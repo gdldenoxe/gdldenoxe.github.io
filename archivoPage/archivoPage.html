@@ -19,14 +19,20 @@
 </body>
 
 <script>
-  const totalImages = 53; // Define the number of images you want
+  const totalImages = 51; // Define the number of images you want
   const baseUrl = "https://raw.githubusercontent.com/gdldenoxe/gdldenoxe.github.io/main/archivoPage/archiveImages/archiveImage%20";
-  const imageExtension = ".jpeg";
+  const extensions = [".jpeg", ".png", ".gif"]; // Array of supported extensions
 
   for (let i = 1; i <= totalImages; i++) {
-    const imgUrl = `${baseUrl}(${i})${imageExtension}`;
-    const imgElement = `<div class="grid-item"><img src="${imgUrl}" /></div>`;
-    document.getElementById('image-gallery').innerHTML += imgElement;
+    let found = false; // Track if a valid image was found
+    extensions.forEach(ext => {
+      if (!found) { // Only proceed if no valid image is found yet
+        const imgUrl = `${baseUrl}(${i})${ext}`;
+        const imgElement = `<div class="grid-item"><img src="${imgUrl}" onerror="this.parentElement.style.display='none'" /></div>`;
+        document.getElementById('image-gallery').innerHTML += imgElement;
+        found = true;
+      }
+    });
   }
 </script>
 
