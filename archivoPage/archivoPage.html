@@ -5,21 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Archivo</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+  <script src="jquery.min.js"></script>
+  <script src="isotope.pkgd.js"></script>
+  <script src="imagesloaded.pkgd.js"></script>
+  <script src="packery-mode.pkgd.js"></script>
 </head>
 <body>
-
-  <!-- Loading Screen -->
-  <div class="loading-screen">
-    <h1>LA MOVIDA TAPATIA</h1>
-  </div>
-
-  <div class="grid">
-    <!-- Images will be inserted here dynamically -->
-    <div class="grid-sizer"></div>
-  </div>
-
-  <script src="script.js"></script>
+    
+    <div class="grid" id="image-gallery">
+      <!-- Images will be dynamically inserted here -->
+    </div>
 
 </body>
+
+<script>
+  const totalImages = 53; // Define the number of images you want
+  const baseUrl = "https://raw.githubusercontent.com/gdldenoxe/gdldenoxe.github.io/main/archivoPage/archiveImages/archiveImage%20";
+  const imageExtension = ".jpeg";
+
+  for (let i = 1; i <= totalImages; i++) {
+    const imgUrl = `${baseUrl}(${i})${imageExtension}`;
+    const imgElement = `<div class="grid-item"><img src="${imgUrl}" /></div>`;
+    document.getElementById('image-gallery').innerHTML += imgElement;
+  }
+</script>
+
+<script src="script.js"></script>
+
 </html>
