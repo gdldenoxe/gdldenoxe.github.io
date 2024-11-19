@@ -1,45 +1,46 @@
-/* General reset */
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: auto; /* Enable scrolling */
+* {
+  box-sizing: border-box;
+}
+
+/* force scrollbar */
+html {
+  overflow-y: scroll;
 }
 
 body {
-  background-color: #f5f5f5;
+  font-family: sans-serif;
 }
 
-/* Gallery container */
-#gallery {
-  display: flex;
-  flex-wrap: wrap; /* Makes the images stack row-by-row */
-  justify-content: flex-start; /* Align images to the left */
-  align-content: flex-start; /* Stack rows at the top */
-  gap: 0px; /* No gaps between images */
-  width: 100%; /* Take full width of the viewport */
-  min-height: 100vh; /* Full height of the viewport */
+/* ---- grid ---- */
+.grid {
+  background: #DDD;
+  margin: 0;
+  padding: 0;
 }
 
-/* Gallery images */
-.gallery-image {
-  width: 18vw; /* Set image width relative to viewport */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: cover; /* Crop images nicely */
-  transition: transform 0.3s ease;
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
-/* Scrollbar styling (optional) */
-body::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+/* ---- .grid-item ---- */
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+  margin: 0; /* Remove margin */
+  padding: 0; /* Remove padding */
 }
 
-body::-webkit-scrollbar-track {
-  background: #f5f5f5;
+.grid-item {
+  float: left;
+  background: #f0f0f0;
+  border: 0; /* Remove borders if necessary */
 }
 
-body::-webkit-scrollbar-thumb {
-  background-color: #aaa;
-  border-radius: 5px;
+.grid-item img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
