@@ -9,46 +9,62 @@ const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}
 // Get a reference to the gallery container
 const gallery = document.getElementById('gallery');
 
-// Random position generator for each image
-const randomPosition = () => {
-  const randomTop = Math.random() * 80 + 10;  // Random top value between 10% and 90%
-  const randomLeft = Math.random() * 80 + 10;  // Random left value between 10% and 90%
-  return {
-    top: `${randomTop}%`,
-    left: `${randomLeft}%`
-  };
+// Function to generate a static rotation
+const randomRotation = (index) => {
+    const rotations = [0, 90, -90, 15, -15]; // Add subtle variations
+    return rotations[index % rotations.length]; // Keep it deterministic
 };
 
 // Fetch the contents of the folder using the GitHub API
 fetch(apiUrl)
-  .then(response => response.json())
-  .then(data => {
-    // Reverse the data array to ensure the first image is the last to be displayed
-    data.reverse();
+    .then(response => response.json())
+    .then(data => {
+        // Reverse the data array to ensure the first image is the last displayed
+        data.reverse();
 
-    // Loop through the API response and create <img> elements dynamically
-    data.forEach(file => {
-      // Check if the file is an image
-      if (file.name.match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
-        const img = document.createElement('img');
-        img.src = file.download_url;  // Use the download URL provided by the GitHub API
-        img.alt = file.name;
-        img.className = 'gallery-image';
+        // Define positioning variables
+        const overlapFactor = 5; // Percentage of overlap between images
+        let x = 0; // X-axis starting point
+        let y = 0; // Y-axis starting point
+        let rowHeight = 0; // Track height of the current row
+        const imageWidth = 18; // Image size in vw
 
-        // Apply random rotation (90, 180, or 270 degrees)
-        const randomRotation = [90, 180, 270][Math.floor(Math.random() * 3)];
-        img.style.transform = `rotate(${randomRotation}deg)`;  // Random rotation
+        // Loop through the API response and create <img> elements dynamically
+        data.forEach((file, index) => {
+            // Check if the file is an image
+            if (file.name.match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
+                const img = document.createElement('img');
+                img.src = file.download_url; // Use the download URL provided by the GitHub API
+                img.alt = file.name;
+                img.className = 'gallery-image';
 
-        // Apply random position
-        const position = randomPosition();
-        img.style.top = position.top;
-        img.style.left = position.left;
+                // Apply static rotation
+                const rotation = randomRotation(index);
+                img.style.transform = `rotate(${rotation}deg)`;
 
-        // Append the image to the gallery container
-        gallery.appendChild(img);
-      }
+                // Set position
+                img.style.left = `${x}vw`;
+                img.style.top = `${y}vh`;
+
+                // Append the image to the gallery container
+                gallery.appendChild(img);
+
+                // Update row height based on this image
+                const imgHeight = (imageWidth * 1.5); // Aspect ratio adjustment
+                rowHeight = Math.max(rowHeight, imgHeight);
+
+                // Increment x position for the next image
+                x += imageWidth - overlapFactor;
+
+                // Move to the next row if the current row exceeds screen width
+                if (x + imageWidth > 100) {
+                    x = 0; // Reset to the start of the row
+                    y += rowHeight - overlapFactor; // Move down by the row height
+                    rowHeight = 0; // Reset row height for the next row
+                }
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching image data:', error);
     });
-  })
-  .catch(error => {
-    console.error('Error fetching image data:', error);
-  });
