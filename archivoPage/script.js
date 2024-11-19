@@ -53,7 +53,7 @@ function loadImagesOneByOne(imageFiles) {
       gridItem.appendChild(img);
       grid.appendChild(gridItem);
 
-      // Initialize Masonry layout after inserting an image
+      // Initialize or reload Masonry layout after each image is inserted
       const msnry = new Masonry('.grid', {
         itemSelector: '.grid-item',
         columnWidth: '.grid-sizer',
