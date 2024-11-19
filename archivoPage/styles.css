@@ -11,7 +11,6 @@ body {
   justify-content: center;
   align-items: flex-start;
   background-color: #f5f5f5;
-  font-family: Arial, sans-serif;
 }
 
 #gallery {
@@ -19,21 +18,24 @@ body {
   flex-wrap: wrap; /* Makes images wrap to the next line */
   justify-content: center;
   align-items: center;
-  gap: 10px; /* Adds space between images */
+  gap: 10px; /* Space between images */
   width: 90%;
-  max-width: 1440px; /* Limit the gallery width */
+  max-width: 1440px;
   margin: 20px auto;
+  position: relative; /* Needed for absolute positioning of images */
 }
 
 .gallery-image {
-  width: 300px; /* Set a default width for images */
+  width: 250px; /* Set a default width for images */
   height: auto; /* Maintain aspect ratio */
   object-fit: cover; /* Crop images nicely */
-  border: 2px solid #ccc; /* Optional: Add borders */
-  border-radius: 5px; /* Optional: Round corners */
-  transition: transform 0.2s ease-in-out;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  position: absolute; /* Makes the images stack on top of each other */
+  transition: transform 0.3s ease; /* Smooth scaling effect */
 }
 
+/* Hover effect */
 .gallery-image:hover {
-  transform: scale(1.05); /* Zoom effect on hover */
+  transform: scale(1.1); /* Slight zoom effect */
 }
