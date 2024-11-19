@@ -1,18 +1,30 @@
-// Define the folder where your images are stored in the GitHub repository
-const folder = 'archivoPage/archiveImages';  // Correct folder path using forward slashes
+// Define the GitHub repository details
+const owner = 'gdldenoxe';  // Your GitHub username
+const repo = 'gdldenoxe.github.io';  // Your GitHub repository name
+const folder = 'archivoPage/archiveImages';  // Folder path in the repository
 
-// Define the total number of images in your folder (replace with the actual number)
-const totalImages = 17;  // Update this number to match the actual count of images
+// GitHub API URL to fetch the contents of the 'archiveImages' folder
+const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}`;
 
 // Get a reference to the gallery container
 const gallery = document.getElementById('gallery');
 
-// Loop through the images and create <img> elements
-for (let i = totalImages; i > 0; i--) {
-    const imageName = `gdldenoxeArchive (${i}).JPG`;  // Update image name based on your format
-    const img = document.createElement('img');
-    img.src = `https://raw.githubusercontent.com/gdldenoxe/gdldenoxe.github.io/main/${folder}/${imageName}`;  // Correct URL format for raw content on GitHub
-    img.alt = `Image ${i}`;
-    img.className = 'gallery-image';
-    gallery.appendChild(img);
-}
+// Fetch the contents of the folder using the GitHub API
+fetch(apiUrl)
+  .then(response => response.json())
+  .then(data => {
+    // Loop through the API response and create <img> elements dynamically
+    data.forEach(file => {
+      // Check if the file is an image (you can adjust this check for other file types if needed)
+      if (file.name.match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
+        const img = document.createElement('img');
+        img.src = file.download_url;  // Use the download URL provided by the GitHub API
+        img.alt = file.name;
+        img.className = 'gallery-image';
+        gallery.appendChild(img);
+      }
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching image data:', error);
+  });
