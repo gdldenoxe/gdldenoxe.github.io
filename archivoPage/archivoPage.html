@@ -10,15 +10,32 @@
   <script src="imagesloaded.pkgd.js"></script>
   <script src="packery-mode.pkgd.js"></script>
 </head>
+
 <body>
     
     <div class="grid" id="image-gallery">
       <!-- Images will be dynamically inserted here -->
     </div>
 
+    <div id="loading-screen">
+        <h1>LA MOVIDA TAPATIA</h1>
+      </div>
+      
 </body>
 
 <script>
+
+   // Check if the page has already been refreshed
+  if (!sessionStorage.getItem('refreshed')) {
+    setTimeout(() => {
+      sessionStorage.setItem('refreshed', true); // Mark the refresh as done
+      location.reload(); // Refresh the page
+    }, 5000);
+  } else {
+    // Hide the loading screen if the page has already been refreshed
+    document.getElementById('loading-screen').style.display = 'none';
+  }
+  
   const totalImages = 51; // Define the number of images you want
   const baseUrl = "https://raw.githubusercontent.com/gdldenoxe/gdldenoxe.github.io/main/archivoPage/archiveImages/archiveImage%20";
   const extensions = [".jpeg", ".png", ".gif"]; // Array of supported extensions
