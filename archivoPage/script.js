@@ -15,42 +15,62 @@ async function fetchImages() {
 
     // Sort images based on the number inside parentheses in their filename (in reverse order)
     imageFiles.sort((a, b) => {
-      const numA = parseInt(a.name.match(/\((\d+)\)/)?.[1], 10);
-      const numB = parseInt(b.name.match(/\((\d+)\)/)?.[1], 10);
-      return numB - numA;  // Reverse the order (largest first)
+      const numA = extractNumberFromFilename(a.name);
+      const numB = extractNumberFromFilename(b.name);
+      return numB - numA;  // Sort descending (largest number first)
     });
 
-    // Insert images into the grid
-    insertImagesIntoGrid(imageFiles);
+    // Load images one by one with a slight delay
+    loadImagesOneByOne(imageFiles);
 
   } catch (error) {
     console.error('Error fetching images from GitHub:', error);
   }
 }
 
-// Function to insert images into the grid
-function insertImagesIntoGrid(imageFiles) {
+// Helper function to extract the number inside parentheses from a filename
+function extractNumberFromFilename(filename) {
+  const match = filename.match(/\((\d+)\)/);
+  return match ? parseInt(match[1], 10) : 0; // Return 0 if no number is found
+}
+
+// Function to load images one by one with a slight delay
+function loadImagesOneByOne(imageFiles) {
   const grid = document.querySelector('.grid');
+  let index = 0;
+  
+  // Function to insert an image into the grid
+  const insertImage = () => {
+    if (index < imageFiles.length) {
+      const file = imageFiles[index];
+      const gridItem = document.createElement('div');
+      gridItem.classList.add('grid-item');
 
-  imageFiles.forEach(file => {
-    const gridItem = document.createElement('div');
-    gridItem.classList.add('grid-item');
+      const img = document.createElement('img');
+      img.src = file.download_url;
+      img.alt = file.name;
 
-    const img = document.createElement('img');
-    img.src = file.download_url;
-    img.alt = file.name;
+      gridItem.appendChild(img);
+      grid.appendChild(gridItem);
 
-    gridItem.appendChild(img);
-    grid.appendChild(gridItem);
-  });
+      // Initialize Masonry layout after inserting an image
+      const msnry = new Masonry('.grid', {
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer',
+        percentPosition: true,
+        fitWidth: true
+      });
 
-  // Initialize Masonry after images are inserted (no loading animation)
-  var msnry = new Masonry('.grid', {
-    itemSelector: '.grid-item',
-    columnWidth: '.grid-sizer',
-    percentPosition: true,
-    fitWidth: true // No overlap, no loading animation
-  });
+      // Increment index to load the next image
+      index++;
+
+      // Call this function again with a delay to load the next image
+      setTimeout(insertImage, 300);  // Delay of 300ms for each image
+    }
+  };
+
+  // Start loading the first image
+  insertImage();
 }
 
 // Call the fetchImages function when the page loads
