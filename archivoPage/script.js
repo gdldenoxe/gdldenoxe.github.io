@@ -38,7 +38,7 @@ function extractNumberFromFilename(filename) {
 function loadImagesOneByOne(imageFiles) {
   const grid = document.querySelector('.grid');
   let index = 0;
-  
+
   // Function to insert an image into the grid
   const insertImage = () => {
     if (index < imageFiles.length) {
@@ -53,14 +53,6 @@ function loadImagesOneByOne(imageFiles) {
       gridItem.appendChild(img);
       grid.appendChild(gridItem);
 
-      // Initialize or reload Masonry layout after each image is inserted
-      const msnry = new Masonry('.grid', {
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-sizer',
-        percentPosition: true,
-        fitWidth: true
-      });
-
       // Increment index to load the next image
       index++;
 
@@ -71,7 +63,37 @@ function loadImagesOneByOne(imageFiles) {
 
   // Start loading the first image
   insertImage();
+
+  // Use imagesLoaded to ensure the layout only initializes once all images have been loaded
+  imagesLoaded(grid, function() {
+    // Initialize Masonry layout after all images are loaded
+    const msnry = new Masonry('.grid', {
+      itemSelector: '.grid-item',
+      columnWidth: '.grid-sizer',
+      percentPosition: true,
+      fitWidth: true
+    });
+
+    // Force reflow of the layout to ensure everything is aligned
+    msnry.layout();
+
+    // Show the grid and hide the loading screen
+    document.querySelector('.loading-screen').style.display = 'none';
+    document.querySelector('.grid').style.display = 'block';
+  });
 }
 
-// Call the fetchImages function when the page loads
-window.addEventListener('load', fetchImages);
+// Show the loading screen for 3 seconds, then refresh the page
+window.addEventListener('load', () => {
+  const loadingScreen = document.querySelector('.loading-screen');
+  
+  // Initially set the grid to fill the viewport height (100vh)
+  document.querySelector('.grid').style.height = '100vh';
+
+  // Hide the loading screen after 3 seconds
+  setTimeout(() => {
+    loadingScreen.style.display = 'none';
+    document.querySelector('.grid').style.display = 'block'; // Show the grid
+    fetchImages(); // Start fetching and displaying images
+  }, 3000); // 3000ms = 3 seconds
+});
