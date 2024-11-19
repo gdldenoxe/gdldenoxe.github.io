@@ -1,0 +1,169 @@
+/* Universal reset and box-sizing */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and html setup to prevent margin and allow centering */
+body, html {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5; /* Background color */
+}
+
+/* Main container with fixed resolution */
+.screen-resolution {
+    position: relative;
+    width: 1920px; /* Figma design width */
+    height: 940px; /* Figma design height */
+    background-color: #FFFFFF; /* Background color as per your Figma design */
+    overflow: hidden; /* Prevent scrollbars */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional for aesthetics */
+}
+
+/* Image container positioning */
+.image-container {
+    position: relative;
+}
+
+.positioned-logoImage {
+    position: absolute;
+    width: 286px;
+    height: 179px;
+    left: 77px;
+    top: 57px;
+}
+
+.positioned-crowdImage {
+    position: absolute;
+    width: 446px;
+    height: 330px;
+    left: 1402px;
+    top: 577px;
+}
+
+.positioned-movidaTapatiaImage {
+    position: absolute;
+    width: 468px;
+    height: 407px;
+    left: 457px;
+    top: 318px;
+}
+
+/* Link container positioning */
+.link-container {
+    position: relative;
+}
+
+/* Shared styles for all hyperlinks */
+.positioned-link {
+    position: absolute;
+    width: 44px;
+    height: 15px;
+    font-family: Helvetica, Arial, sans-serif;
+    text-decoration: underline;
+    line-height: 15px; /* Aligns text vertically within height */
+    text-align: center; /* Centers text horizontally */
+    color: black; /* Default color */
+}
+
+/* Specific positions for each link */
+.tienda {
+    /* TIENDA */
+
+position: absolute;
+width: 44px;
+height: 15px;
+left: 319px;
+top: 725px;
+
+font-family: 'Helvetica';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+text-decoration-line: underline;
+
+color: #000000;
+
+
+}
+
+.archivo {
+    /* ARCHIVO */
+
+position: absolute;
+width: 54px;
+height: 15px;
+left: 998px;
+top: 306px;
+
+font-family: 'Helvetica';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+text-decoration-line: underline;
+
+color: #000000;
+
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+}
+
+.soundcloud {
+    /* SOUNDCLOUD */
+
+position: absolute;
+width: 86px;
+height: 15px;
+left: 1350px;
+top: 529px;
+
+font-family: 'Helvetica';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 15px;
+/* identical to box height */
+
+color: #000000;
+
+
+}
+
+/* Optional: Add hover effect for better UX */
+.positioned-link:hover {
+    color: blue; /* Change text color on hover */
+    cursor: pointer; /* Show pointer cursor */
+}
+
+.positioned-asciiWork {
+
+    /* ꧁꧂ */
+
+position: absolute;
+width: 200px;
+height: 44px;
+left: 1578px;
+top: 175px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 80px;
+/* identical to box height */
+
+color: #000000;
+
+
+}
