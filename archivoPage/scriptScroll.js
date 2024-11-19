@@ -1,68 +1,49 @@
-// Define the GitHub repository details
-const owner = 'gdldenoxe';  // Your GitHub username
-const repo = 'gdldenoxe.github.io';  // Your GitHub repository name
-const folder = 'archivoPage/archiveImages';  // Folder path in the repository
+// GitHub repository details
+const owner = 'gdldenoxe'; // Your GitHub username
+const repo = 'gdldenoxe.github.io'; // Your GitHub repository name
+const folder = 'archivoPage/archiveImages'; // Folder path in the repository
 
-// GitHub API URL to fetch the contents of the 'archiveImages' folder
+// GitHub API URL to fetch the contents of the folder
 const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}`;
 
 // Get a reference to the gallery container
 const gallery = document.getElementById('gallery');
 
-// Function to generate a static rotation
-const randomRotation = (index) => {
-    const rotations = [0, 90, -90, 15, -15]; // Add subtle variations
-    return rotations[index % rotations.length]; // Keep it deterministic
-};
-
-// Fetch the contents of the folder using the GitHub API
+// Fetch images dynamically from the GitHub API
 fetch(apiUrl)
     .then(response => response.json())
     .then(data => {
-        // Reverse the data array to ensure the first image is the last displayed
-        data.reverse();
+        // Check if data is not empty
+        if (!data || data.length === 0) {
+            console.error('No images found or issue with the GitHub API request');
+            return;
+        }
 
-        // Define positioning variables
-        const overlapFactor = 5; // Percentage of overlap between images
-        let x = 0; // X-axis starting point
-        let y = 0; // Y-axis starting point
-        let rowHeight = 0; // Track height of the current row
-        const imageWidth = 18; // Image size in vw
+        // Filter out only image files (based on extension)
+        const imageFiles = data.filter(file => file.name.match(/\.(jpg|jpeg|png|gif|bmp)$/i));
 
-        // Loop through the API response and create <img> elements dynamically
-        data.forEach((file, index) => {
-            // Check if the file is an image
-            if (file.name.match(/\.(jpg|jpeg|png|gif|bmp)$/i)) {
-                const img = document.createElement('img');
-                img.src = file.download_url; // Use the download URL provided by the GitHub API
-                img.alt = file.name;
-                img.className = 'gallery-image';
+        // Sort images by filename in ascending order (can adjust this for custom order)
+        imageFiles.sort((a, b) => {
+            const aName = a.name.match(/\d+/g) ? parseInt(a.name.match(/\d+/g)[0]) : 0;
+            const bName = b.name.match(/\d+/g) ? parseInt(b.name.match(/\d+/g)[0]) : 0;
+            return aName - bName;  // Sort by the number extracted from the image name
+        });
 
-                // Apply static rotation
-                const rotation = randomRotation(index);
-                img.style.transform = `rotate(${rotation}deg)`;
+        // Reverse the array to make the first image the last to be displayed
+        imageFiles.reverse();
 
-                // Set position
-                img.style.left = `${x}vw`;
-                img.style.top = `${y}vh`;
+        // Loop through each image file and add it to the gallery
+        imageFiles.forEach(file => {
+            const img = document.createElement('img');
+            img.src = file.download_url; // Use the GitHub file's raw URL
+            img.alt = file.name;
+            img.className = 'gallery-image';
 
-                // Append the image to the gallery container
-                gallery.appendChild(img);
+            // Debugging: Check if the image URL is correct
+            console.log(`Loading image: ${file.download_url}`);
 
-                // Update row height based on this image
-                const imgHeight = (imageWidth * 1.5); // Aspect ratio adjustment
-                rowHeight = Math.max(rowHeight, imgHeight);
-
-                // Increment x position for the next image
-                x += imageWidth - overlapFactor;
-
-                // Move to the next row if the current row exceeds screen width
-                if (x + imageWidth > 100) {
-                    x = 0; // Reset to the start of the row
-                    y += rowHeight - overlapFactor; // Move down by the row height
-                    rowHeight = 0; // Reset row height for the next row
-                }
-            }
+            // Append image to the gallery
+            gallery.appendChild(img);
         });
     })
     .catch(error => {

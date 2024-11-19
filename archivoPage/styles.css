@@ -3,41 +3,36 @@ body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow-x: hidden; /* Only vertical scrolling allowed */
+  overflow: auto; /* Enable scrolling */
 }
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   background-color: #f5f5f5;
 }
 
+/* Gallery container */
 #gallery {
-  position: relative;
-  width: 100%; /* Full width */
-  padding: 20px; /* Add some padding around the gallery */
-  display: block;
+  display: flex;
+  flex-wrap: wrap; /* Makes the images stack row-by-row */
+  justify-content: flex-start; /* Align images to the left */
+  align-content: flex-start; /* Stack rows at the top */
+  gap: 0px; /* No gaps between images */
+  width: 100%; /* Take full width of the viewport */
+  min-height: 100vh; /* Full height of the viewport */
 }
 
+/* Gallery images */
 .gallery-image {
-  width: 18vw; /* Base size for images */
-  height: auto;
-  object-fit: cover;
-  position: absolute;
-  transition: transform 0.3s ease, z-index 0.3s ease;
-  margin: 0;
-}
-
-/* Hover effect: Bring image slightly forward without fully revealing it */
-.gallery-image:hover {
-  transform: scale(1.05); /* Slight zoom */
-  z-index: 10; /* Higher z-index for better visibility */
+  width: 18vw; /* Set image width relative to viewport */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Crop images nicely */
+  transition: transform 0.3s ease;
 }
 
 /* Scrollbar styling (optional) */
 body::-webkit-scrollbar {
-  width: 12px;
+  width: 10px;
+  height: 10px;
 }
 
 body::-webkit-scrollbar-track {
@@ -46,5 +41,5 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
   background-color: #aaa;
-  border-radius: 6px;
+  border-radius: 5px;
 }
