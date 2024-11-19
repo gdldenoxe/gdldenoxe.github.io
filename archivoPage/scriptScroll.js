@@ -11,7 +11,7 @@ const gallery = document.getElementById('gallery');
 for (let i = totalImages; i > 0; i--) {
     const imageName = `gdldenoxeArchive (${i}).JPG`;  // Update image name based on your format
     const img = document.createElement('img');
-    img.src = `https://raw.githubusercontent.com/gdldenoxe/gdldenoxe.github.io/refs/heads/main/archivoPage/archiveImages/gdldenoxeArchive%20(10).JPG`;  // Correct URL format for raw content on GitHub
+    img.src = `https://raw.githubusercontent.com/gdldenoxe/gdldenoxe.github.io/main/${folder}/${imageName}`;  // Correct URL format for raw content on GitHub
     img.alt = `Image ${i}`;
     img.className = 'gallery-image';
     gallery.appendChild(img);
