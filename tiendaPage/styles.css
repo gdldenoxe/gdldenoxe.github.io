@@ -3,7 +3,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 100%; /* Change to 100% for better responsiveness */
+  width: 100%; /* Full width for responsiveness */
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -135,9 +135,9 @@ html, body {
 
   /* Adjust image size for mobile */
   .image-playera, .image-playerados, .image-bolsa, .image-chamarra, .image-bufanda {
-    width: 250px; /* Adjusted size for mobile */
-    height: 240px; /* Adjusted height */
-    transform: scale(0.8); /* Slightly scale down for mobile screens */
+    width: 220px; /* Reduced size for mobile */
+    height: 210px; /* Reduced height */
+    transform: scale(0.7); /* Further scale down for mobile */
   }
 
   /* Adjust image positions for mobile */
