@@ -1,4 +1,4 @@
-// external js: packery.pkgd.js, imagesloaded.pkgd.js
+// External libraries are loaded at the top of the HTML file
 
 // Always display the loading screen for 10 seconds
 setTimeout(() => {
@@ -6,7 +6,7 @@ setTimeout(() => {
   if (loadingScreen) {
     loadingScreen.style.display = 'none'; // Hide the loading screen after 10 seconds
   }
-}, 18000); // 10 seconds
+}, 18000); // 18 seconds (10 seconds + fade out duration)
 
 // Check if the page has already been refreshed
 if (!sessionStorage.getItem('hasRefreshed')) {
@@ -28,23 +28,17 @@ const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}
 // Function to get the total number of images
 async function getTotalImages() {
   try {
-    // Fetch the folder contents from GitHub API
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    // Check if the response contains files (some errors might return a different structure)
     if (Array.isArray(data)) {
-      // Filter out files that are images (by checking file extensions)
       const imageFiles = data.filter(file =>
         /\.(jpg|jpeg|png|gif|bmp|svg)$/i.test(file.name)
       );
-
-      // Get the total number of image files
       const totalImages = imageFiles.length;
       console.log(`Total images in folder: ${totalImages}`);
       return totalImages;
     } else {
-      // Handle case when the API does not return an array (e.g., if there is an error)
       console.error('Error: Unexpected response structure:', data);
       return 0;
     }
@@ -56,17 +50,17 @@ async function getTotalImages() {
 
 // Function to generate images and display them in the gallery
 async function displayImages() {
-  const totalImages = await getTotalImages(); // Wait for the total image count
+  const totalImages = await getTotalImages();
 
   const galleryContainer = document.getElementById('image-gallery');
   const fragment = document.createDocumentFragment(); // To avoid frequent DOM updates
 
-  // Loop in reverse order, so image with position 1 is last
+  // Loop in reverse order
   for (let i = totalImages; i >= 1; i--) {
-    let found = false; // Track if a valid image was found
+    let found = false;
 
     extensions.forEach(ext => {
-      if (!found) { // Only proceed if no valid image is found yet
+      if (!found) {
         const imgUrl = `${baseUrl}(${i})${ext}`;
         const imgElement = document.createElement('div');
         imgElement.classList.add('grid-item');
@@ -74,19 +68,17 @@ async function displayImages() {
         // Use lazy loading for images
         imgElement.innerHTML = `<img src="${imgUrl}" loading="lazy" alt="Image ${i}" onerror="handleImageError(this)" />`;
 
-        // Append the image element to the fragment
         fragment.appendChild(imgElement);
         found = true;
       }
     });
   }
 
-  // Append all the images to the gallery at once
   galleryContainer.appendChild(fragment);
 
   // Initialize Packery after images are added
-  var grid = document.querySelector('.grid');
-  var pckry = new Packery(grid, {
+  const grid = document.querySelector('.grid');
+  const pckry = new Packery(grid, {
     itemSelector: '.grid-item',
     percentPosition: true
   });

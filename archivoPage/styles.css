@@ -1,101 +1,128 @@
-* { box-sizing: border-box; }
-
-/* force scrollbar */
-html { overflow-y: scroll; }
-
-body { font-family: sans-serif; }
-
-/* ---- grid ---- */
-
-.grid {
-  background: #DDD;
+/* Universal reset and box-sizing */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* clear fix */
-.grid:after {
-  content: '';
-  display: block;
-  clear: both;
+/* Force scrollbar */
+html {
+    overflow-y: scroll;
+}
+
+/* Set body font */
+body {
+    font-family: sans-serif;
+    margin: 0;  /* Remove body margin */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* ---- Grid Layout ---- */
+.grid {
+    background: #DDD;
+    display: flex;
+    flex-wrap: wrap;  /* Ensures items wrap on smaller screens */
+    justify-content: flex-start; /* Align items to the left */
+    width: 100vw;  /* Set grid container to 100% of viewport width */
+    height: 100vh; /* Optional: Ensure grid fills the screen height */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    box-sizing: border-box; /* Include padding and border in width/height calculation */
 }
 
 /* ---- .grid-item ---- */
-
 .grid-item {
-  width: 33.333%;
+    width: 33.333%; /* Default width (3 items per row) */
+    padding: 0; /* Ensure no padding */
+    box-sizing: border-box; /* Include padding and border in width/height calculation */
 }
 
-.grid-item {
-  float: left;
+/* Responsive: On smaller screens, show 2 items per row */
+@media (max-width: 768px) {
+    .grid-item {
+        width: 48%; /* 2 items per row on tablets */
+    }
 }
 
+/* Responsive: On very small screens, show 1 item per row */
+@media (max-width: 480px) {
+    .grid-item {
+        width: 100%; /* 1 item per row on mobile */
+    }
+}
+
+/* Images inside grid items */
 .grid-item img {
-  display: block;
-  max-width: 100%;
+    display: block;
+    max-width: 100%; /* Make sure images are responsive */
+    height: auto; /* Maintain aspect ratio */
 }
 
-/* Loading Screen Styles */
+/* ---- Loading Screen Styles ---- */
 #loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  animation: fadeOut 10s 10s forwards;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 10s 10s forwards;
 }
 
 #loading-screen h1 {
-  color: white;
-  font-family: Arial, sans-serif;
-  font-size: 2rem;
-  text-align: center;
-  margin-bottom: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 /* Three-dot animation */
 #loading-screen .dots {
-  display: flex;
-  gap: 5px;
+    display: flex;
+    gap: 5px;
 }
 
 #loading-screen .dots span {
-  width: 10px;
-  height: 10px;
-  background-color: white;
-  border-radius: 50%;
-  animation: blink 1.5s infinite ease-in-out;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    animation: blink 1.5s infinite ease-in-out;
 }
 
 #loading-screen .dots span:nth-child(2) {
-  animation-delay: 0.7s;
+    animation-delay: 0.7s;
 }
 
 #loading-screen .dots span:nth-child(3) {
-  animation-delay: 0.5s;
+    animation-delay: 0.5s;
 }
 
 /* Keyframes for blinking dots */
 @keyframes blink {
-  0%, 80%, 100% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
+    0%, 80%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
+    }
 }
 
 /* Fade-out animation for the loading screen */
 @keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
