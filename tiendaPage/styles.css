@@ -3,242 +3,31 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 100%; /* Full width for responsiveness */
-  position: relative;
+  width: 100%;
   overflow: hidden;
   box-sizing: border-box;
 }
 
-/* Fixed image size (312px by 299px) */
-.image-playera, .image-playerados, .image-bolsa, .image-chamarra, .image-bufanda {
+/* Shared styles for all images */
+.image {
   position: absolute;
-  width: 312px;
+  width: 312px; /* Default desktop size */
   height: 299px;
   z-index: 1;
-  transition: transform 0.3s ease-in-out; /* Smooth transitions for scaling */
+  transition: transform 0.3s ease-in-out, left 0.5s ease-in-out, top 0.5s ease-in-out;
 }
 
-/* Randomized image placements all over the page */
-.image-playera:nth-child(6) {
-  left: 100px;
-  top: 300px;
-}
-
-.image-playerados:nth-child(7) {
-  left: 1500px;
-  top: 100px;
-}
-
-.image-bolsa:nth-child(8) {
-  left: 500px;
-  top: 800px;
-}
-
-.image-chamarra:nth-child(9) {
-  left: 300px;
-  top: 600px;
-}
-
-.image-bufanda:nth-child(10) {
-  left: 1300px;
-  top: 200px;
-}
-
-.image-playera:nth-child(11) {
-  left: 1600px;
-  top: 500px;
-}
-
-.image-playerados:nth-child(12) {
-  left: 800px;
-  top: 350px;
-}
-
-.image-bolsa:nth-child(13) {
-  left: 200px;
-  top: 900px;
-}
-
-.image-chamarra:nth-child(14) {
-  left: 1200px;
-  top: 700px;
-}
-
-.image-bufanda:nth-child(15) {
-  left: 600px;
-  top: 150px;
-}
-
-.image-playera:nth-child(16) {
-  left: 50px;
-  top: 50px;
-}
-
-.image-playerados:nth-child(17) {
-  left: 1700px;
-  top: 400px;
-}
-
-.image-bolsa:nth-child(18) {
-  left: 800px;
-  top: 400px;
-}
-
-.image-chamarra:nth-child(19) {
-  left: 100px;
-  top: 800px;
-}
-
-.image-bufanda:nth-child(20) {
-  left: 1700px;
-  top: 800px;
-}
-
-.image-playera:nth-child(21) {
-  left: 900px;
-  top: 300px;
-}
-
-.image-playerados:nth-child(22) {
-  left: 1200px;
-  top: 200px;
-}
-
-.image-bolsa:nth-child(23) {
-  left: 500px;
-  top: 500px;
-}
-
-.image-chamarra:nth-child(24) {
-  left: 50px;
-  top: 600px;
-}
-
-.image-bufanda:nth-child(25) {
-  left: 1500px;
-  top: 600px;
-}
-
-/* Ensure all images are contained properly */
-.image-playera img, .image-playerados img, .image-bolsa img, .image-chamarra img, .image-bufanda img {
+.image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
-/* Media Queries for Mobile */
+/* Media Query for Mobile */
 @media (max-width: 768px) {
-  body {
-    width: 100%; /* Full width for mobile */
-  }
-
-  /* Adjust image size for mobile */
-  .image-playera, .image-playerados, .image-bolsa, .image-chamarra, .image-bufanda {
-    width: 220px; /* Reduced size for mobile */
-    height: 210px; /* Reduced height */
-    transform: scale(0.7); /* Further scale down for mobile */
-  }
-
-  /* Adjust image positions for mobile */
-  .image-playera:nth-child(6) {
-    left: 10%;
-    top: 30%;
-  }
-
-  .image-playerados:nth-child(7) {
-    left: 80%;
-    top: 10%;
-  }
-
-  .image-bolsa:nth-child(8) {
-    left: 35%;
-    top: 65%;
-  }
-
-  .image-chamarra:nth-child(9) {
-    left: 25%;
-    top: 45%;
-  }
-
-  .image-bufanda:nth-child(10) {
-    left: 70%;
-    top: 25%;
-  }
-
-  .image-playera:nth-child(11) {
-    left: 85%;
-    top: 40%;
-  }
-
-  .image-playerados:nth-child(12) {
-    left: 60%;
-    top: 30%;
-  }
-
-  .image-bolsa:nth-child(13) {
-    left: 15%;
-    top: 70%;
-  }
-
-  .image-chamarra:nth-child(14) {
-    left: 55%;
-    top: 55%;
-  }
-
-  .image-bufanda:nth-child(15) {
-    left: 30%;
-    top: 20%;
-  }
-
-  /* More adjustments for mobile image placements */
-  .image-playera:nth-child(16) {
-    left: 5%;
-    top: 10%;
-  }
-
-  .image-playerados:nth-child(17) {
-    left: 90%;
-    top: 35%;
-  }
-
-  .image-bolsa:nth-child(18) {
-    left: 50%;
-    top: 35%;
-  }
-
-  .image-chamarra:nth-child(19) {
-    left: 10%;
-    top: 65%;
-  }
-
-  .image-bufanda:nth-child(20) {
-    left: 85%;
-    top: 70%;
-  }
-
-  .image-playera:nth-child(21) {
-    left: 45%;
-    top: 25%;
-  }
-
-  .image-playerados:nth-child(22) {
-    left: 65%;
-    top: 15%;
-  }
-
-  .image-bolsa:nth-child(23) {
-    left: 30%;
-    top: 45%;
-  }
-
-  .image-chamarra:nth-child(24) {
-    left: 5%;
-    top: 50%;
-  }
-
-  .image-bufanda:nth-child(25) {
-    left: 80%;
-    top: 55%;
+  .image {
+    width: 120px; /* Reduced size for mobile */
+    height: 110px;
   }
 }
