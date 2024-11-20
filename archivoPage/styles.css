@@ -73,7 +73,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    animation: fadeOut 10s 10s forwards;
+    animation: fadeOut 8s 8s forwards;
 }
 
 #loading-screen h1 {
