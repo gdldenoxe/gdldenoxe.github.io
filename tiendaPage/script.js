@@ -1,37 +1,60 @@
-function randomizePositions(isMobile) {
-    const images = document.querySelectorAll('.image');
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
+document.addEventListener("DOMContentLoaded", () => {
+    const imageContainer = document.getElementById("image-container");
   
-    images.forEach((image) => {
-      const margin = isMobile ? 50 : 350; // Leave smaller margin for mobile
-      const randomLeft = Math.random() * (viewportWidth - margin);
-      const randomTop = Math.random() * (viewportHeight - margin);
+    // List of image sources
+    const imageSources = [
+      "tiendaImages/imageTienda (1).png",
+      "tiendaImages/imageTienda (2).png",
+      "tiendaImages/imageTienda (3).png",
+      "tiendaImages/imageTienda (4).png",
+      "tiendaImages/imageTienda (5).png",
+    ];
   
-      image.style.left = `${randomLeft}px`;
-      image.style.top = `${randomTop}px`;
-    });
-  }
+    // Image size for desktop (keep resolution for desktop)
+    const desktopImageSize = { width: 312, height: 299 };
   
-  function adjustLayout() {
+    // Image size for mobile (scaled down)
+    const mobileImageSize = { width: 100, height: 100 };
+  
+    // Function to generate random positions
+    const getRandomPosition = () => {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+  
+      const x = Math.random() * (screenWidth - 150); // Adjust margins for larger screens
+      const y = Math.random() * (screenHeight - 150);
+  
+      return { x, y };
+    };
+  
+    // Function to create an image element
+    const createImageElement = (src, isMobile) => {
+      const img = document.createElement("img");
+      img.src = src;
+      img.classList.add("image");
+  
+      // Set appropriate size based on screen size (mobile or desktop)
+      const { width, height } = isMobile ? mobileImageSize : desktopImageSize;
+      img.style.width = `${width}px`;
+      img.style.height = `${height}px`;
+  
+      // Assign random position
+      const { x, y } = getRandomPosition();
+      img.style.left = `${x}px`;
+      img.style.top = `${y}px`;
+  
+      return img;
+    };
+  
+    // Determine if we are on mobile or desktop
     const isMobile = window.innerWidth <= 768;
   
-    // Apply random positions only if on desktop or mobile first-time load
-    randomizePositions(isMobile);
-  
-    // Adjust scale and size for mobile
-    if (isMobile) {
-      document.querySelectorAll('.image').forEach((image) => {
-        image.style.transform = 'scale(0.7)';
-      });
-    } else {
-      document.querySelectorAll('.image').forEach((image) => {
-        image.style.transform = 'scale(1)';
-      });
-    }
-  }
-  
-  // Initialize positions on page load and resize
-  window.addEventListener('load', adjustLayout);
-  window.addEventListener('resize', adjustLayout);
+    // Generate 5 copies of each image
+    imageSources.forEach((src) => {
+      for (let i = 0; i < 5; i++) {
+        const img = createImageElement(src, isMobile);
+        imageContainer.appendChild(img);
+      }
+    });
+  });
   
