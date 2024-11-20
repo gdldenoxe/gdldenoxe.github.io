@@ -43,6 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
       img.style.left = `${x}px`;
       img.style.top = `${y}px`;
   
+      // Assign a random z-index to layer images on top of each other
+      const randomZIndex = Math.floor(Math.random() * 1000); // Random z-index value
+      img.style.zIndex = randomZIndex;
+  
       return img;
     };
   
