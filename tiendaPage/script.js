@@ -16,13 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Image size for mobile (scaled down)
     const mobileImageSize = { width: 100, height: 100 };
   
-    // Function to generate random positions
+    // Function to generate random positions that allow overlap
     const getRandomPosition = () => {
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
   
-      const x = Math.random() * (screenWidth - 150); // Adjust margins for larger screens
-      const y = Math.random() * (screenHeight - 150);
+      const x = Math.random() * screenWidth; // Allow positions to be anywhere on screen width
+      const y = Math.random() * screenHeight; // Allow positions to be anywhere on screen height
   
       return { x, y };
     };
