@@ -70,7 +70,9 @@ async function displayImages() {
         const imgUrl = `${baseUrl}(${i})${ext}`;
         const imgElement = document.createElement('div');
         imgElement.classList.add('grid-item');
-        imgElement.innerHTML = `<img src="${imgUrl}" onerror="this.parentElement.style.display='none'" />`;
+
+        // Use lazy loading for images
+        imgElement.innerHTML = `<img src="${imgUrl}" loading="lazy" alt="Image ${i}" onerror="handleImageError(this)" />`;
 
         // Append the image element to the fragment
         fragment.appendChild(imgElement);
@@ -93,6 +95,11 @@ async function displayImages() {
   imagesLoaded(grid).on('progress', function () {
     pckry.layout();
   });
+}
+
+// Error handling for images
+function handleImageError(imgElement) {
+  imgElement.parentElement.style.display = 'none'; // Hide the parent container if the image fails to load
 }
 
 // Call the function to display images
