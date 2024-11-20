@@ -71,7 +71,7 @@ body, html {
     font-family: Helvetica, Arial, sans-serif;
     text-decoration: underline;
     color: black;
-    font-size: 2vw; /* Scale font size based on viewport width */
+    font-size: 14px; /* Fixed font size */
     line-height: 15px; /* Aligns text vertically within height */
     text-align: center;
 }
