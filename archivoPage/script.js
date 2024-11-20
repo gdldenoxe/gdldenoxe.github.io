@@ -1,14 +1,20 @@
 // external js: packery.pkgd.js, imagesloaded.pkgd.js
 
+// Always display the loading screen for 10 seconds
+setTimeout(() => {
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) {
+    loadingScreen.style.display = 'none'; // Hide the loading screen after 10 seconds
+  }
+}, 18000); // 10 seconds
+
 // Check if the page has already been refreshed
-if (!sessionStorage.getItem('refreshed')) {
+if (!sessionStorage.getItem('hasRefreshed')) {
+  // Mark the refresh as done and reload the page after 10 seconds
   setTimeout(() => {
-    sessionStorage.setItem('refreshed', true); // Mark the refresh as done
-    location.reload(); // Refresh the page
-  }, 5000);
-} else {
-  // Hide the loading screen if the page has already been refreshed
-  document.getElementById('loading-screen').style.display = 'none';
+    sessionStorage.setItem('hasRefreshed', 'true'); // Track the refresh
+    location.reload(); // Reload the page
+  }, 10000); // 10 seconds
 }
 
 // Define the number of images you want
