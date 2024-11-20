@@ -11,6 +11,7 @@
 body, html {
     height: 100%;
     width: 100%;
+    overflow: auto;  /* Allow scrolling */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,10 +21,12 @@ body, html {
 /* Main container with fixed resolution */
 .screen-resolution {
     position: relative;
-    width: 1920px; /* Figma design width */
-    height: 940px; /* Figma design height */
+    width: 100%;
+    max-width: 1920px;  /* Limit max width */
+    height: 100%;
+    max-height: 940px;  /* Limit max height */
     background-color: #FFFFFF; /* Background color as per your Figma design */
-    overflow: hidden; /* Prevent scrollbars */
+    overflow: hidden; /* Prevent scrollbars on the container itself */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional for aesthetics */
 }
 
@@ -32,28 +35,29 @@ body, html {
     position: relative;
 }
 
+/* Adjusting positions using viewport-based units */
 .positioned-logoImage {
     position: absolute;
-    width: 286px;
-    height: 179px;
-    left: 77px;
-    top: 57px;
+    width: 15vw;  /* Adjust width relative to viewport width */
+    height: auto; /* Maintain aspect ratio */
+    left: 4vw;    /* Position from left relative to viewport width */
+    top: 6vh;     /* Position from top relative to viewport height */
 }
 
 .positioned-crowdImage {
     position: absolute;
-    width: 446px;
-    height: 330px;
-    left: 1402px;
-    top: 577px;
+    width: 20vw;
+    height: auto;
+    left: 73vw;   /* Adjust left position */
+    top: 60vh;    /* Adjust top position */
 }
 
 .positioned-movidaTapatiaImage {
     position: absolute;
-    width: 468px;
-    height: 407px;
-    left: 457px;
-    top: 318px;
+    width: 24vw;
+    height: auto;
+    left: 24vw;
+    top: 34vh;
 }
 
 /* Link container positioning */
@@ -64,80 +68,28 @@ body, html {
 /* Shared styles for all hyperlinks */
 .positioned-link {
     position: absolute;
-    width: 44px;
-    height: 15px;
     font-family: Helvetica, Arial, sans-serif;
     text-decoration: underline;
+    color: black;
+    font-size: 2vw; /* Scale font size based on viewport width */
     line-height: 15px; /* Aligns text vertically within height */
-    text-align: center; /* Centers text horizontally */
-    color: black; /* Default color */
+    text-align: center;
 }
 
 /* Specific positions for each link */
 .tienda {
-    /* TIENDA */
-
-position: absolute;
-width: 44px;
-height: 15px;
-left: 319px;
-top: 725px;
-
-font-family: 'Helvetica';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 15px;
-/* identical to box height */
-text-decoration-line: underline;
-
-color: #000000;
-
-
+    left: 15vw;  /* Adjust position for responsiveness */
+    top: 75vh;   /* Adjust vertical position */
 }
 
 .archivo {
-    /* ARCHIVO */
-
-position: absolute;
-width: 54px;
-height: 15px;
-left: 998px;
-top: 306px;
-
-font-family: 'Helvetica';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 15px;
-/* identical to box height */
-text-decoration-line: underline;
-
-color: #000000;
-
-text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
+    left: 52vw;
+    top: 30vh;
 }
 
 .soundcloud {
-    /* SOUNDCLOUD */
-
-position: absolute;
-width: 86px;
-height: 15px;
-left: 1350px;
-top: 529px;
-
-font-family: 'Helvetica';
-font-style: normal;
-font-weight: 400;
-font-size: 12px;
-line-height: 15px;
-/* identical to box height */
-
-color: #000000;
-
-
+    left: 70vw;
+    top: 56vh;
 }
 
 /* Optional: Add hover effect for better UX */
@@ -147,23 +99,13 @@ color: #000000;
 }
 
 .positioned-asciiWork {
-
-    /* ꧁꧂ */
-
-position: absolute;
-width: 200px;
-height: 44px;
-left: 1578px;
-top: 175px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 40px;
-line-height: 80px;
-/* identical to box height */
-
-color: #000000;
-
-
+    position: absolute;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5vw;  /* Adjust size */
+    line-height: 10vh;
+    left: 80vw;
+    top: 18vh;
+    color: #000000;
 }
