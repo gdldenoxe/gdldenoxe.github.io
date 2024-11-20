@@ -1,7 +1,108 @@
-.imageTienda1 {
+/* General Reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Enforcing a fixed screen size of 1440x1024 */
+html, body {
+  width: 1440px;
+  height: 1024px;
+  overflow: hidden; /* Disable scrolling */
+  position: relative; /* Allows absolute positioning of child elements */
+}
+
+/* Fixed image positions, maintaining your messy aesthetic */
+.image-playera, .image-playerados, .image-bolsa, .image-chamarra, .image-bufanda {
   position: absolute;
-  width: 312px;
-  height: 299px;
+  width: 312px; /* Ensure consistent width for all images */
+  height: 299px; /* Ensure consistent height for all images */
+  z-index: 1; /* To layer the images */
+}
+
+/* Image-specific positions (randomized to create a chaotic look) */
+.image-playera {
   left: 911px;
   top: 54px;
+}
+
+.image-playerados {
+  left: 468px;
+  top: 78px;
+}
+
+.image-bolsa {
+  left: 28px;
+  top: 691px;
+}
+
+.image-chamarra {
+  left: 273px;
+  top: 422px;
+}
+
+.image-bufanda {
+  left: 998px;
+  top: 618px;
+}
+
+/* Randomize further for "chaos" */
+.image-playera:nth-child(6) {
+  left: 500px;
+  top: 300px;
+}
+
+.image-playerados:nth-child(7) {
+  left: 1200px;
+  top: 200px;
+}
+
+.image-bolsa:nth-child(8) {
+  left: 800px;
+  top: 600px;
+}
+
+.image-chamarra:nth-child(9) {
+  left: 200px;
+  top: 700px;
+}
+
+.image-bufanda:nth-child(10) {
+  left: 1300px;
+  top: 500px;
+}
+
+.image-playera:nth-child(11) {
+  left: 100px;
+  top: 100px;
+}
+
+.image-playerados:nth-child(12) {
+  left: 1100px;
+  top: 400px;
+}
+
+.image-bolsa:nth-child(13) {
+  left: 700px;
+  top: 100px;
+}
+
+.image-chamarra:nth-child(14) {
+  left: 350px;
+  top: 850px;
+}
+
+.image-bufanda:nth-child(15) {
+  left: 950px;
+  top: 900px;
+}
+
+/* Ensure that the image stays the correct size and doesn't distort */
+.image-playera img, .image-playerados img, .image-bolsa img, .image-chamarra img, .image-bufanda img {
+  width: 100%; /* Make image fill the container */
+  height: 100%; /* Make image fill the container */
+  object-fit: cover; /* Ensure the image is scaled correctly within its container */
+  display: block; /* Remove any unwanted margin or padding */
 }
