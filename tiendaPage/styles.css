@@ -4,13 +4,13 @@ html, body {
   padding: 0;
   height: 100%;
   box-sizing: border-box;
+  overflow: hidden; /* Disable scrolling */
 }
 
-/* Enforcing a fixed screen size of 1440x1024 */
+/* Enforcing a fixed screen size of 1920x1080 */
 html, body {
-  width: 1440px;
-  height: 1024px;
-  overflow: hidden; /* Disable scrolling */
+  width: 1920px;
+  height: 1080px;
   position: relative; /* Allows absolute positioning of child elements */
 }
 
@@ -48,29 +48,29 @@ html, body {
   top: 618px;
 }
 
-/* Randomize further for "chaos" */
+/* Move some images more to the right */
 .image-playera:nth-child(6) {
-  left: 500px;
+  left: 1400px;
   top: 300px;
 }
 
 .image-playerados:nth-child(7) {
-  left: 1200px;
+  left: 1500px;
   top: 200px;
 }
 
 .image-bolsa:nth-child(8) {
-  left: 800px;
+  left: 1200px;
   top: 600px;
 }
 
 .image-chamarra:nth-child(9) {
-  left: 200px;
+  left: 1100px;
   top: 700px;
 }
 
 .image-bufanda:nth-child(10) {
-  left: 1300px;
+  left: 1400px;
   top: 500px;
 }
 
@@ -80,22 +80,22 @@ html, body {
 }
 
 .image-playerados:nth-child(12) {
-  left: 1100px;
+  left: 150px;
   top: 400px;
 }
 
 .image-bolsa:nth-child(13) {
-  left: 700px;
+  left: 1800px;
   top: 100px;
 }
 
 .image-chamarra:nth-child(14) {
-  left: 350px;
+  left: 800px;
   top: 850px;
 }
 
 .image-bufanda:nth-child(15) {
-  left: 950px;
+  left: 1700px;
   top: 900px;
 }
 
