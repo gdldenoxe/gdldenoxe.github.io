@@ -127,20 +127,6 @@ body {
     cursor: pointer;
 }
 
-/* ---- Dice Button Styling ---- */
-
-/* Positioning the dice icon in the bottom-right corner */
-#sort-options {
-    position: fixed;
-    bottom: 30px; /* Space from bottom */
-    right: 30px; /* Space from right */
-    z-index: 1000; /* Make sure it stays on top */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
 /* Styling the dice icon */
 .rizz-button {
     width: 75px; /* Size of the button */
