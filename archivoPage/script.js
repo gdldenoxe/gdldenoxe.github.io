@@ -44,7 +44,7 @@ async function displayImages(randomOrder = false) {
 
   // Create an array of image URLs
   const imageArray = [];
-  for (let i = 1; i <= totalImages; i++) {
+  for (let i = totalImages; i >= 1; i--) { // Reverse order (last image first)
     extensions.forEach(ext => {
       const imgUrl = `${baseUrl}(${i})${ext}`;
       imageArray.push(imgUrl);
@@ -90,5 +90,5 @@ document.getElementById('dice-icon').addEventListener('click', () => {
   displayImages(true); // Randomize images when the dice is clicked
 });
 
-// Display images in order by default
+// Display images in reverse order by default
 displayImages(false);
