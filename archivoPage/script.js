@@ -1,4 +1,10 @@
-// External libraries are loaded at the top of the HTML file
+// Define the base URL and extensions
+const baseUrl = "https://raw.githubusercontent.com/gdldenoxe/gdldenoxe.github.io/main/archivoPage/archiveImages/archiveImage%20";
+const extensions = [".jpeg", ".png", ".gif"]; // Supported extensions
+const owner = 'gdldenoxe'; // GitHub username
+const repo = 'gdldenoxe.github.io'; // Repository name
+const folder = 'archivoPage/archiveImages'; // Folder path in the repository
+const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}`;
 
 // Always display the loading screen for 10 seconds
 setTimeout(() => {
@@ -6,24 +12,15 @@ setTimeout(() => {
   if (loadingScreen) {
     loadingScreen.style.display = 'none'; // Hide the loading screen after 10 seconds
   }
-}, 18000); // 18 seconds (10 seconds + fade out duration)
+}, 18000); // 18 seconds (10 seconds + fade-out duration)
 
 // Check if the page has already been refreshed
 if (!sessionStorage.getItem('hasRefreshed')) {
-  // Mark the refresh as done and reload the page after 10 seconds
   setTimeout(() => {
-    sessionStorage.setItem('hasRefreshed', 'true'); // Track the refresh
+    sessionStorage.setItem('hasRefreshed', 'true'); // Mark the refresh as done
     location.reload(); // Reload the page
   }, 10000); // 10 seconds
 }
-
-// Define the number of images you want
-const baseUrl = "https://raw.githubusercontent.com/gdldenoxe/gdldenoxe.github.io/main/archivoPage/archiveImages/archiveImage%20";
-const extensions = [".jpeg", ".png", ".gif"]; // Array of supported extensions
-const owner = 'gdldenoxe'; // Your GitHub username
-const repo = 'gdldenoxe.github.io'; // Your GitHub repository name
-const folder = 'archivoPage/archiveImages'; // Folder path in the repository
-const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}`;
 
 // Function to get the total number of images
 async function getTotalImages() {
@@ -48,31 +45,44 @@ async function getTotalImages() {
   }
 }
 
-// Function to generate images and display them in the gallery
-async function displayImages() {
+// Function to shuffle an array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// Function to generate and display images
+async function displayImages(sortBy = 'order') {
   const totalImages = await getTotalImages();
 
   const galleryContainer = document.getElementById('image-gallery');
-  const fragment = document.createDocumentFragment(); // To avoid frequent DOM updates
+  galleryContainer.innerHTML = ''; // Clear existing images
 
-  // Loop in reverse order
-  for (let i = totalImages; i >= 1; i--) {
-    let found = false;
-
+  const imageArray = [];
+  for (let i = 1; i <= totalImages; i++) {
     extensions.forEach(ext => {
-      if (!found) {
-        const imgUrl = `${baseUrl}(${i})${ext}`;
-        const imgElement = document.createElement('div');
-        imgElement.classList.add('grid-item');
-
-        // Use lazy loading for images
-        imgElement.innerHTML = `<img src="${imgUrl}" loading="lazy" alt="Image ${i}" onerror="handleImageError(this)" />`;
-
-        fragment.appendChild(imgElement);
-        found = true;
-      }
+      const imgUrl = `${baseUrl}(${i})${ext}`;
+      imageArray.push(imgUrl);
     });
   }
+
+  // Sort the images based on the selected option
+  if (sortBy === 'random') {
+    shuffleArray(imageArray);
+  } else {
+    imageArray.reverse(); // Display in reverse order for "Order"
+  }
+
+  // Add images to the gallery
+  const fragment = document.createDocumentFragment(); // To avoid frequent DOM updates
+  imageArray.forEach((imgUrl, index) => {
+    const imgElement = document.createElement('div');
+    imgElement.classList.add('grid-item');
+    imgElement.innerHTML = `<img src="${imgUrl}" loading="lazy" alt="Image ${index + 1}" onerror="handleImageError(this)" />`;
+    fragment.appendChild(imgElement);
+  });
 
   galleryContainer.appendChild(fragment);
 
@@ -94,5 +104,14 @@ function handleImageError(imgElement) {
   imgElement.parentElement.style.display = 'none'; // Hide the parent container if the image fails to load
 }
 
-// Call the function to display images
+// Toggle sort function
+let currentSort = 'order';
+document.getElementById('toggle-sort').addEventListener('click', () => {
+  currentSort = currentSort === 'order' ? 'random' : 'order';
+  const sortButton = document.getElementById('toggle-sort');
+  sortButton.textContent = `Sort: ${currentSort === 'order' ? 'Random' : 'Order'}`;
+  displayImages(currentSort);
+});
+
+// Call the function to display images initially
 displayImages();
