@@ -126,3 +126,66 @@ body {
         visibility: hidden;
     }
 }
+
+/* ---- Dice Button Styling ---- */
+
+/* Positioning the dice icon in the bottom-right corner */
+#sort-options {
+    position: fixed;
+    bottom: 30px; /* Space from bottom */
+    right: 30px; /* Space from right */
+    z-index: 1000; /* Make sure it stays on top */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* ---- Dice Button Styling ---- */
+
+/* Positioning the dice icon in the bottom-right corner */
+#sort-options {
+    position: fixed;
+    bottom: 30px; /* Space from bottom */
+    right: 30px; /* Space from right */
+    z-index: 1000; /* Make sure it stays on top */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Styling the dice icon */
+.rizz-button {
+    width: 90px; /* Size of the button */
+    height: 90px; /* Size of the button */
+    border-radius: 50%; /* Round shape */
+    background-color: #e9e802; /* New yellow color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add a little shadow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; /* No extra padding to keep the image centered */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Adjustments for the dice image */
+.rizz-button img {
+    width: 50%; /* Make the image 50% smaller */
+    height: 50%; /* Make the image 50% smaller */
+    object-fit: contain; /* Keep aspect ratio and avoid cropping */
+    object-position: center; /* Center the image */
+}
+
+/* Hover effect to add some style */
+.rizz-button:hover {
+    transform: scale(1.1); /* Slightly enlarge the button */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Add a stronger shadow on hover */
+}
+
+/* Change cursor on hover for a better user experience */
+.rizz-button:hover {
+    cursor: pointer;
+}
+
+
