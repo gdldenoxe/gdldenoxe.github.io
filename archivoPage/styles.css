@@ -39,20 +39,6 @@ body {
     box-sizing: border-box; /* Include padding and border in width/height calculation */
 }
 
-/* Responsive: On smaller screens, show 2 items per row */
-@media (max-width: 768px) {
-    .grid-item {
-        width: 48%; /* 2 items per row on tablets */
-    }
-}
-
-/* Responsive: On very small screens, show 1 item per row */
-@media (max-width: 480px) {
-    .grid-item {
-        width: 100%; /* 1 item per row on mobile */
-    }
-}
-
 /* Images inside grid items */
 .grid-item img {
     display: block;
