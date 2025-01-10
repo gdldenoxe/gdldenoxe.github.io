@@ -18,14 +18,18 @@ body {
     align-items: center;
 }
 
+/* Image Container */
+.image-container {
+    position: relative; /* Ensure links are positioned relative to this container */
+    width: 901px;  /* Fixed width */
+    height: 492px; /* Fixed height */
+}
+
 /* Rectangle 1 (Image container) */
 .positioned-crowdImage {
     position: absolute;
-    width: 901px;  /* Fixed width */
-    height: 492px;  /* Fixed height */
-    left: 50%;  /* Position from the left center of the screen */
-    top: 50%;   /* Position from the top center of the screen */
-    transform: translate(-50%, -50%);  /* Offset by half of its own width and height to center it */
+    width: 100%;  /* Fill the container */
+    height: 100%; /* Fill the container */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,24 +46,61 @@ body {
 /* Links Positioned on the Image */
 .positioned-link {
     position: absolute;
-    font-size: 20px;
-    color: white;
+    width: 161px;   /* Fixed width */
+    height: 44px;   /* Fixed height */
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    color: #000000;
     text-decoration: none;
     z-index: 10;  /* Ensure links are on top of the image */
 }
 
-.tienda {
-    top: 10%;
-    left: 10%;
+/* ARCHIVO - Positioned at the left of the image */
+.archivo {
+    position: absolute;
+    width: 131px;     /* Same width as TIENDA */
+    height: 44px;     /* Same height as TIENDA */
+    left: 0;   /* Positioned at the very left of the image container */
+    top: -50px;   /* Positioned above the image */
+    
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    color: #000000;
 }
 
-.archivo {
-    top: 10%;
-    right: 10%;
+/* TIENDA - Positioned at the center top of the image */
+.tienda {
+    position: absolute;
+    width: 131px;
+    height: 44px;
+    left: calc(50% - 65px);  /* Center horizontally, half of 131px is 65px */
+    top: -50px;   /* Positioned above the image */
+    
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    color: #000000;
 }
 
 .soundcloud {
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute;
+    width: 104px;       /* Same width as your original link */
+    height: 44px;       /* Same height as your original link */
+    right: 0;           /* Aligns the link to the right edge of the image container */
+    top: -50px;         /* Positioned above the image */
+    
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 44px;
+    color: #000000;
 }
