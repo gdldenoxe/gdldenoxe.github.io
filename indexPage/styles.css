@@ -72,6 +72,7 @@ body {
     font-size: 36px;
     line-height: 44px;
     color: #000000;
+    text-decoration: none;
 }
 
 /* TIENDA - Positioned at the center top of the image */
@@ -88,6 +89,7 @@ body {
     font-size: 36px;
     line-height: 44px;
     color: #000000;
+    text-decoration: none;
 }
 
 .soundcloud {
@@ -103,4 +105,11 @@ body {
     font-size: 36px;
     line-height: 44px;
     color: #000000;
+    text-decoration: none;
+}
+
+/* Hover effect to highlight links in blue */
+.archivo:hover, .tienda:hover, .soundcloud:hover {
+    color: #007BFF;  /* Change text color to blue */
+    text-decoration: underline;  /* Add underline on hover */
 }
