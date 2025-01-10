@@ -1,111 +1,65 @@
-/* Universal reset and box-sizing */
-*,
-*::before,
-*::after {
+/* Ensure the body takes up full viewport height */
+body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body and html setup to prevent margin and allow centering */
-body, html {
-    height: 100%;
-    width: 100%;
-    overflow: auto;  /* Allow scrolling */
+    height: 100vh;  /* Full viewport height */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f5f5f5; /* Background color */
+    background-color: #f0f0f0;  /* Optional: for background */
 }
 
-/* Main container with fixed resolution */
+/* Make sure the screen resolution container takes up the full viewport */
 .screen-resolution {
     position: relative;
-    width: 100%;
-    max-width: 1920px;  /* Limit max width */
-    height: 100%;
-    max-height: 940px;  /* Limit max height */
-    background-color: #FFFFFF; /* Background color as per your Figma design */
-    overflow: hidden; /* Prevent scrollbars on the container itself */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional for aesthetics */
+    width: 100vw;  /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Image container positioning */
-.image-container {
-    position: relative;
-}
-
-/* Adjusting positions using viewport-based units */
-.positioned-logoImage {
-    position: absolute;
-    width: 15vw;  /* Adjust width relative to viewport width */
-    height: auto; /* Maintain aspect ratio */
-    left: 4vw;    /* Position from left relative to viewport width */
-    top: 6vh;     /* Position from top relative to viewport height */
-}
-
+/* Rectangle 1 (Image container) */
 .positioned-crowdImage {
     position: absolute;
-    width: 20vw;
-    height: auto;
-    left: 73vw;   /* Adjust left position */
-    top: 60vh;    /* Adjust top position */
+    width: 901px;  /* Fixed width */
+    height: 492px;  /* Fixed height */
+    left: 50%;  /* Position from the left center of the screen */
+    top: 50%;   /* Position from the top center of the screen */
+    transform: translate(-50%, -50%);  /* Offset by half of its own width and height to center it */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #D9D9D9;  /* Optional background */
 }
 
-.positioned-movidaTapatiaImage {
-    position: absolute;
-    width: 24vw;
-    height: auto;
-    left: 24vw;
-    top: 34vh;
+/* Image styling */
+.positioned-crowdImage img {
+    width: 100%;   /* Ensure image width is responsive to the container width */
+    height: 100%;  /* Ensure image height is responsive to the container height */
+    object-fit: cover;  /* Maintain aspect ratio and cover the container */
 }
 
-/* Link container positioning */
-.link-container {
-    position: relative;
-}
-
-/* Shared styles for all hyperlinks */
+/* Links Positioned on the Image */
 .positioned-link {
     position: absolute;
-    font-family: Helvetica, Arial, sans-serif;
-    text-decoration: underline;
-    color: black;
-    font-size: 14px; /* Fixed font size */
-    line-height: 15px; /* Aligns text vertically within height */
-    text-align: center;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    z-index: 10;  /* Ensure links are on top of the image */
 }
 
-/* Specific positions for each link */
 .tienda {
-    left: 15vw;  /* Adjust position for responsiveness */
-    top: 75vh;   /* Adjust vertical position */
+    top: 10%;
+    left: 10%;
 }
 
 .archivo {
-    left: 52vw;
-    top: 30vh;
+    top: 10%;
+    right: 10%;
 }
 
 .soundcloud {
-    left: 70vw;
-    top: 56vh;
-}
-
-/* Optional: Add hover effect for better UX */
-.positioned-link:hover {
-    color: blue; /* Change text color on hover */
-    cursor: pointer; /* Show pointer cursor */
-}
-
-.positioned-asciiWork {
-    position: absolute;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 5vw;  /* Adjust size */
-    line-height: 10vh;
-    left: 80vw;
-    top: 18vh;
-    color: #000000;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
 }
