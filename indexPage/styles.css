@@ -106,13 +106,13 @@ body {
     text-decoration: none;
 }
 
-/* Email - Positioned directly below the image container (similar to TIENDA) */
+/* Email - Positioned directly below the image container with some added space */
 .email {
     position: absolute;
     width: 462px;
     height: 44px;
     left: calc(50% - 231px); /* Center horizontally below the image */
-    top: 492px;  /* Position directly below the image */
+    top: 520px;  /* Add 28px space between the image and the email */
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
