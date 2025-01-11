@@ -115,7 +115,7 @@ html, body {
 @media (max-width: 768px) {
     /* Scale the entire screen resolution group by 50% */
     .screen-resolution {
-        transform: scale(0.5); /* Scale the image and all content within by 50% */
+        transform: scale(0.9); /* Scale the image and all content within by 50% */
         transform-origin: center center; /* Ensure it scales from the center */
     }
 
@@ -140,6 +140,6 @@ html, body {
     .email {
         font-size: 6vw; /* Increase the font size for readability on mobile */
         line-height: 7vw; /* Adjust line height for readability */
-        top: calc(108% + 6vw); /* Adjust the position based on image scaling */
+        top: calc(100% + 6vw); /* Adjust the position based on image scaling */
     }
 }
