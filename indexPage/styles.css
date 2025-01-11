@@ -1,7 +1,14 @@
-/* Ensure the body takes up full viewport height */
-body {
+/* Disable scrolling */
+html, body {
     margin: 0;
-    height: 100vh;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+    width: 100vw; /* Ensure full width */
+    height: 100vh; /* Ensure full height */
+}
+
+/* Center content in the viewport */
+body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,14 +16,29 @@ body {
     cursor: url('indexImages/cursor_gdn.png') 16 16, auto;
 }
 
-/* Make sure the screen resolution container takes up the full viewport */
+/* Scale content to fit the viewport */
 .screen-resolution {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: scale(1); /* Initialize scale */
+    transform-origin: center; /* Ensure scaling is centered */
+}
+
+/* Responsive scaling: Adjust scale based on viewport dimensions */
+@media screen and (max-aspect-ratio: 16/9) {
+    .screen-resolution {
+        transform: scale(calc(100vh / 900));
+    }
+}
+
+@media screen and (min-aspect-ratio: 16/9) {
+    .screen-resolution {
+        transform: scale(calc(100vw / 1600));
+    }
 }
 
 /* Image Container */
@@ -47,8 +69,6 @@ body {
 /* Links Positioned on the Image */
 .positioned-link {
     position: absolute;
-    width: 161px;
-    height: 44px;
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -59,71 +79,31 @@ body {
     z-index: 10;
 }
 
-/* ARCHIVO - Positioned at the left of the image */
+/* ARCHIVO */
 .archivo {
-    position: absolute;
-    width: 131px;
-    height: 44px;
     left: 0;
     top: -50px;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 44px;
-    color: #000000;
-    text-decoration: none;
 }
 
-/* TIENDA - Positioned at the center top of the image */
+/* TIENDA */
 .tienda {
-    position: absolute;
-    width: 131px;
-    height: 44px;
     left: calc(50% - 65px);
     top: -50px;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 44px;
-    color: #000000;
-    text-decoration: none;
 }
 
-/* SoundCloud - Positioned at the right of the image */
+/* SoundCloud */
 .soundcloud {
-    position: absolute;
-    width: 104px;
-    height: 44px;
     right: 0;
     top: -50px;
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 44px;
-    color: #000000;
-    text-decoration: none;
 }
 
-/* Email - Positioned directly below the image container with some added space */
+/* Email */
 .email {
-    position: absolute;
-    width: 462px;
-    height: 44px;
-    left: calc(50% - 231px); /* Center horizontally below the image */
-    top: 520px;  /* Add 28px space between the image and the email */
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 44px;
-    color: #000000;
-    text-decoration: none;
+    left: calc(50% - 231px);
+    top: 520px;
 }
 
-/* Hover effect to highlight links in blue */
+/* Hover effect */
 .archivo:hover, .tienda:hover, .soundcloud:hover, .email:hover {
     color: #007BFF;
     text-decoration: underline;
