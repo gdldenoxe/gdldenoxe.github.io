@@ -90,11 +90,11 @@ html, body {
 /* Position: GDLDENOXE@GMAIL.COM */
 .email {
     left: 50%; /* Center horizontally */
-    top: 108%; /* Position it just below the image */
+    top: calc(100% + 3vw); /* Position it just below the image with dynamic space */
     transform: translateX(-50%); /* Ensure it's fully centered horizontally */
     width: auto; /* Adjust width automatically */
-    font-size: 36px; /* Font size for email */
-    line-height: 44px; /* Line height for readability */
+    font-size: 3.5vw; /* Font size scales based on viewport width */
+    line-height: 4.2vw; /* Line height scales with font size */
     color: #000000; /* Font color */
     text-decoration: none;
 }
@@ -103,4 +103,19 @@ html, body {
 .archivo:hover, .tienda:hover, .soundcloud:hover, .email:hover {
     color: #007BFF;
     text-decoration: underline;
+}
+
+/* Mobile scaling for the image */
+@media (max-width: 768px) {
+    .positioned-crowdImage img {
+        transform: scale(0.5); /* Scale the image by 50% */
+        object-fit: contain; /* Ensure the image retains its aspect ratio while scaling */
+    }
+
+    /* Adjust positioning of the email and links for mobile */
+    .email {
+        font-size: 5vw; /* Make email text more readable on smaller screens */
+        line-height: 6vw;
+        top: calc(108% + 6vw); /* Adjust the position relative to image */
+    }
 }
