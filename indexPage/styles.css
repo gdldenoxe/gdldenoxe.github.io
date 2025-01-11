@@ -65,7 +65,7 @@ html, body {
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 4vw; /* Font size scales dynamically based on viewport */
+    font-size: 3.5vw; /* Font size scales dynamically based on viewport */
     line-height: 1.2; /* Adjust line height */
     color: #000000;
     text-decoration: none;
@@ -77,20 +77,20 @@ html, body {
 /* Position: ARCHIVO link */
 .archivo {
     left: 0%; /* Keep proportional left margin */
-    top: -10%; /* Adjust top position relative to container */
+    top: -11%; /* Adjust top position relative to container */
 }
 
 /* Position: TIENDA link */
 .tienda {
     left: 50%; /* Center horizontally */
-    top: -10%; /* Adjust top position */
+    top: -11%; /* Adjust top position */
     transform: translateX(-50%); /* Ensure it's fully centered */
 }
 
 /* Position: SoundCloud link */
 .soundcloud {
     right: -2%; /* Keep proportional right margin */
-    top: -10%; /* Adjust top position */
+    top: -11%; /* Adjust top position */
 }
 
 /* Position: GDLDENOXE@GMAIL.COM */
