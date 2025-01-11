@@ -56,7 +56,7 @@ html, body {
 .positioned-crowdImage img {
     width: 100%; /* Scale the image with its container */
     height: 100%; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensure image fills the container */
+    object-fit: cover; /* Ensure the image is fully visible without cropping */
 }
 
 /* General link styling */
@@ -76,7 +76,7 @@ html, body {
 
 /* Position: ARCHIVO link */
 .archivo {
-    left: 2%; /* Keep proportional left margin */
+    left: 0%; /* Keep proportional left margin */
     top: -10%; /* Adjust top position relative to container */
 }
 
@@ -89,14 +89,14 @@ html, body {
 
 /* Position: SoundCloud link */
 .soundcloud {
-    right: 2%; /* Keep proportional right margin */
+    right: -2%; /* Keep proportional right margin */
     top: -10%; /* Adjust top position */
 }
 
 /* Position: GDLDENOXE@GMAIL.COM */
 .email {
     left: 50%; /* Center horizontally */
-    top: calc(100% + 3vw); /* Position it just below the image with dynamic space */
+    top: calc(96% + 3vw); /* Position it just below the image with dynamic space */
     transform: translateX(-50%); /* Ensure it's fully centered horizontally */
     width: auto; /* Adjust width automatically */
     font-size: 3.5vw; /* Font size scales based on viewport width */
@@ -134,12 +134,12 @@ html, body {
 
     /* Adjust positioning of the links */
     .archivo, .tienda, .soundcloud {
-        top: calc(-10% * 0.5); /* Scale the position based on image scale */
+        top: calc(20% * 0.5); /* Scale the position based on image scale */
     }
 
     .email {
         font-size: 6vw; /* Increase the font size for readability on mobile */
         line-height: 7vw; /* Adjust line height for readability */
-        top: calc(100% + 6vw); /* Adjust the position based on image scaling */
+        top: calc(82% + 6vw); /* Adjust the position based on image scaling */
     }
 }
