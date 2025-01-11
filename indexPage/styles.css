@@ -1,14 +1,17 @@
-/* Disable scrolling */
+/* Universal Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Disable scrolling and ensure the body occupies full viewport */
 html, body {
     margin: 0;
     padding: 0;
     overflow: hidden; /* No scrolling allowed */
     width: 100vw; /* Full width of the viewport */
     height: 100vh; /* Full height of the viewport */
-}
-
-/* Ensure the body centers content */
-body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,20 +89,14 @@ body {
 
 /* Position: GDLDENOXE@GMAIL.COM */
 .email {
-    position: absolute;
-    width: 462px;
-    height: 44px;
     left: 50%; /* Center horizontally */
     top: 108%; /* Position it just below the image */
     transform: translateX(-50%); /* Ensure it's fully centered horizontally */
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 36px;
-    line-height: 44px;
-    color: #000000;
+    width: auto; /* Adjust width automatically */
+    font-size: 36px; /* Font size for email */
+    line-height: 44px; /* Line height for readability */
+    color: #000000; /* Font color */
     text-decoration: none;
-    z-index: 10; /* Ensure it appears above other elements */
 }
 
 /* Hover effect for links */
