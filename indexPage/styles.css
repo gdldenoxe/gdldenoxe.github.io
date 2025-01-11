@@ -33,9 +33,10 @@ html, body {
     position: relative;
     width: 100%; /* Use full container width */
     height: 100%; /* Use full container height */
+    transform-origin: top left; /* Ensure scaling happens from the top-left corner */
 }
 
-/* Background for the image */
+/* Image inside the container */
 .positioned-crowdImage {
     position: absolute;
     width: 100%; /* Full width of container */
@@ -104,17 +105,27 @@ html, body {
     text-decoration: underline;
 }
 
-/* Mobile scaling for the image */
+/* Mobile scaling for the image and links */
 @media (max-width: 768px) {
-    .positioned-crowdImage img {
-        transform: scale(0.92); /* Scale the image by 50% */
-        object-fit: contain; /* Ensure the image retains its aspect ratio while scaling */
+    /* Scale the entire container by 50% */
+    .image-container {
+        transform: scale(0.5); /* Scale the image and all content within by 50% */
+        transform-origin: top left; /* Ensure it scales from the top left */
     }
 
-    /* Adjust positioning of the email and links for mobile */
+    /* Adjust link sizes for mobile */
+    .positioned-link {
+        font-size: 6vw; /* Adjust font size for better readability on small screens */
+    }
+
+    /* Adjust positioning of the links */
+    .archivo, .tienda, .soundcloud {
+        top: calc(-10% * 0.5); /* Scale the position based on image scale */
+    }
+
     .email {
-        font-size: 5vw; /* Make email text more readable on smaller screens */
-        line-height: 6vw;
-        top: calc(108% + 6vw); /* Adjust the position relative to image */
+        font-size: 6vw; /* Increase the font size for readability on mobile */
+        line-height: 7vw; /* Adjust line height for readability */
+        top: calc(108% + 6vw); /* Adjust the position based on image scaling */
     }
 }
