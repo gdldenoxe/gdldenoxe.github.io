@@ -6,6 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0;
+    cursor: url('indexImages/cursor_gdn.png') 16 16, auto;
 }
 
 /* Make sure the screen resolution container takes up the full viewport */
