@@ -2,12 +2,12 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Prevent scrolling */
-    width: 100vw; /* Ensure full width */
-    height: 100vh; /* Ensure full height */
+    overflow: hidden; /* No scrolling allowed */
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
 }
 
-/* Center content in the viewport */
+/* Ensure the body centers content */
 body {
     display: flex;
     justify-content: center;
@@ -16,59 +16,82 @@ body {
     cursor: url('indexImages/cursor_gdn.png') 16 16, auto;
 }
 
-/* Scale content to fit the viewport */
+/* Scale the content based on viewport size */
 .screen-resolution {
     position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: scale(1); /* Initialize scale */
-    transform-origin: center; /* Ensure scaling is centered */
-}
-
-/* Responsive scaling: Adjust scale based on viewport dimensions */
-@media screen and (max-aspect-ratio: 16/9) {
-    .screen-resolution {
-        transform: scale(calc(100vh / 900));
-    }
-}
-
-@media screen and (min-aspect-ratio: 16/9) {
-    .screen-resolution {
-        transform: scale(calc(100vw / 1600));
-    }
+    width: 901px; /* Base width */
+    height: 492px; /* Base height */
+    transform: scale(calc(min(100vw / 901, 100vh / 492))); /* Scale content proportionally */
+    transform-origin: top left; /* Ensure scaling starts from top left corner */
 }
 
 /* Image Container */
 .image-container {
     position: relative;
-    width: 901px;
-    height: 492px;
+    width: 100%; /* Use full container width */
+    height: 100%; /* Use full container height */
 }
 
-/* Rectangle 1 (Image container) */
+/* Background for the image */
 .positioned-crowdImage {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100%; /* Full width of container */
+    height: 100%; /* Full height of container */
     display: flex;
     justify-content: center;
     align-items: center;
     background: #D9D9D9;
 }
 
-/* Image styling */
+/* Image inside the container */
 .positioned-crowdImage img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; /* Scale the image with its container */
+    height: 100%; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure image fills the container */
 }
 
-/* Links Positioned on the Image */
+/* General link styling */
 .positioned-link {
     position: absolute;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 4vw; /* Font size scales dynamically based on viewport */
+    line-height: 1.2; /* Adjust line height */
+    color: #000000;
+    text-decoration: none;
+    z-index: 10;
+    width: 15vw; /* Width scales proportionally */
+    text-align: center;
+}
+
+/* Position: ARCHIVO link */
+.archivo {
+    left: 2%; /* Keep proportional left margin */
+    top: -10%; /* Adjust top position relative to container */
+}
+
+/* Position: TIENDA link */
+.tienda {
+    left: 50%; /* Center horizontally */
+    top: -10%; /* Adjust top position */
+    transform: translateX(-50%); /* Ensure it's fully centered */
+}
+
+/* Position: SoundCloud link */
+.soundcloud {
+    right: 2%; /* Keep proportional right margin */
+    top: -10%; /* Adjust top position */
+}
+
+/* Position: GDLDENOXE@GMAIL.COM */
+.email {
+    position: absolute;
+    width: 462px;
+    height: 44px;
+    left: 50%; /* Center horizontally */
+    top: 108%; /* Position it just below the image */
+    transform: translateX(-50%); /* Ensure it's fully centered horizontally */
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
@@ -76,34 +99,10 @@ body {
     line-height: 44px;
     color: #000000;
     text-decoration: none;
-    z-index: 10;
+    z-index: 10; /* Ensure it appears above other elements */
 }
 
-/* ARCHIVO */
-.archivo {
-    left: 0;
-    top: -50px;
-}
-
-/* TIENDA */
-.tienda {
-    left: calc(50% - 65px);
-    top: -50px;
-}
-
-/* SoundCloud */
-.soundcloud {
-    right: 0;
-    top: -50px;
-}
-
-/* Email */
-.email {
-    left: calc(50% - 231px);
-    top: 520px;
-}
-
-/* Hover effect */
+/* Hover effect for links */
 .archivo:hover, .tienda:hover, .soundcloud:hover, .email:hover {
     color: #007BFF;
     text-decoration: underline;
