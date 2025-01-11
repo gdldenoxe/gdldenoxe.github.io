@@ -28,7 +28,7 @@ html, body {
     justify-content: center;
     align-items: center;
     flex-direction: column; /* Stack items vertically */
-    transform-origin: top left; /* Ensure scaling starts from top left corner */
+    transform-origin: center center; /* Ensure scaling starts from the center */
 }
 
 /* Image Container */
@@ -39,7 +39,7 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: column; /* Keep stacking links */
 }
 
 /* Image inside the container */
@@ -116,7 +116,7 @@ html, body {
     /* Scale the entire screen resolution group by 50% */
     .screen-resolution {
         transform: scale(0.5); /* Scale the image and all content within by 50% */
-        transform-origin: top left; /* Ensure it scales from the top left */
+        transform-origin: center center; /* Ensure it scales from the center */
     }
 
     /* Ensure the screen resolution container stays centered */
