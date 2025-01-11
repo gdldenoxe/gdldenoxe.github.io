@@ -1,6 +1,6 @@
 // Define the base URL and extensions
 const baseUrl = "https://raw.githubusercontent.com/gdldenoxe/gdldenoxe.github.io/main/archivoPage/archiveImages/archiveImage%20";
-const extensions = [".jpeg", ".png", ".gif"]; // Supported extensions
+const extensions = [".jpeg", ".png", ".gif", ".jpg"]; // Supported extensions
 const owner = 'gdldenoxe'; // GitHub username
 const repo = 'gdldenoxe.github.io'; // Repository name
 const folder = 'archivoPage/archiveImages'; // Folder path in the repository
