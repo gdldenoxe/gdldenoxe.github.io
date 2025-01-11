@@ -19,12 +19,15 @@ html, body {
     cursor: url('indexImages/cursor_gdn.png') 16 16, auto;
 }
 
-/* Scale the content based on viewport size */
+/* Wrapper to hold image and links together */
 .screen-resolution {
     position: relative;
     width: 901px; /* Base width */
     height: 492px; /* Base height */
-    transform: scale(calc(min(100vw / 901, 100vh / 492))); /* Scale content proportionally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack items vertically */
     transform-origin: top left; /* Ensure scaling starts from top left corner */
 }
 
@@ -33,7 +36,10 @@ html, body {
     position: relative;
     width: 100%; /* Use full container width */
     height: 100%; /* Use full container height */
-    transform-origin: top left; /* Ensure scaling happens from the top-left corner */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 /* Image inside the container */
@@ -107,10 +113,18 @@ html, body {
 
 /* Mobile scaling for the image and links */
 @media (max-width: 768px) {
-    /* Scale the entire container by 50% */
-    .image-container {
+    /* Scale the entire screen resolution group by 50% */
+    .screen-resolution {
         transform: scale(0.5); /* Scale the image and all content within by 50% */
         transform-origin: top left; /* Ensure it scales from the top left */
+    }
+
+    /* Ensure the screen resolution container stays centered */
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Keep stacking links */
     }
 
     /* Adjust link sizes for mobile */
