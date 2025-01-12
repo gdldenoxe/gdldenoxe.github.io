@@ -3,11 +3,22 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // List of image sources
     const imageSources = [
-      "tiendaImages/imageTienda (1).png",
-      "tiendaImages/imageTienda (2).png",
-      "tiendaImages/imageTienda (3).png",
-      "tiendaImages/imageTienda (4).png",
-      "tiendaImages/imageTienda (5).png",
+      "tiendaImages/imageTienda (1).jpg",
+      "tiendaImages/imageTienda (2).jpg",
+      "tiendaImages/imageTienda (3).jpg",
+      "tiendaImages/imageTienda (4).jpg",
+      "tiendaImages/imageTienda (5).jpg",
+      "tiendaImages/imageTienda (6).jpg",
+      "tiendaImages/imageTienda (7).jpg",
+      "tiendaImages/imageTienda (8).jpg",
+      "tiendaImages/imageTienda (9).jpg",
+      "tiendaImages/imageTienda (10).jpg",
+      "tiendaImages/imageTienda (11).jpg",
+      "tiendaImages/imageTienda (12).jpg",
+      "tiendaImages/imageTienda (13).jpg",
+      "tiendaImages/imageTienda (14).jpg",
+      "tiendaImages/imageTienda (15).jpg",
+      "tiendaImages/imageTienda (16).jpg",
     ];
   
     // Image size for desktop (keep resolution for desktop)
@@ -55,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // Generate 5 copies of each image
     imageSources.forEach((src) => {
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 2; i++) {
         const img = createImageElement(src, isMobile);
         imageContainer.appendChild(img);
       }
