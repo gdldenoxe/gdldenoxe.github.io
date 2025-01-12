@@ -18,15 +18,16 @@ body {
   position: absolute;
   transition: transform 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
-  object-fit: contain; /* Ensures images maintain their aspect ratio */
-  border-radius: 5px;
+  object-fit: cover; /* Ensures images fill the square without stretching */
+  width: 180px; /* Set fixed width */
+  height: 180px; /* Set fixed height to make them square */
+  /* No border-radius to keep the images square */
 }
 
 /* Hover effect for images */
 .image:hover {
   transform: scale(1.05); /* Slightly enlarge the image */
 }
-
 
 /* Preview modal background (dark overlay) */
 .preview-modal {
@@ -181,16 +182,16 @@ body {
 /* Style for the images when viewed on mobile */
 @media (max-width: 768px) {
   .image {
-    width: 70px;
-    height: 70px;
+    width: 70px; /* Adjust size for mobile */
+    height: 70px; /* Ensure it's square on mobile */
   }
 }
 
 /* Style for larger screens (desktop) */
 @media (min-width: 769px) {
   .image {
-    width: 180px;
-    height: 180px;
+    width: 180px; /* Adjust size for desktop */
+    height: 180px; /* Ensure it's square on desktop */
   }
 
   /* Make modal even smaller on desktop */
