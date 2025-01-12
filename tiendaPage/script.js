@@ -21,14 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // Image size for mobile (scaled down)
     const mobileImageSize = { width: 70, height: 70 };
   
-    // Function to generate random positions that allow overlap
+    // Function to generate random positions that allow overlap and reach full screen perimeter
     const getRandomPosition = () => {
       const screenWidth = window.innerWidth;
       const screenHeight = window.innerHeight;
   
-      // Allow random positions with tighter packing but still allow overlap
-      const x = Math.random() * (screenWidth - 120); // Prevent images from overflowing on the right side
-      const y = Math.random() * (screenHeight - 120); // Prevent images from overflowing on the bottom side
+      // Allow random positions but ensure images can go from edge to edge (covering the whole perimeter)
+      const x = Math.random() * screenWidth; // Allow images to go to the far right
+      const y = Math.random() * screenHeight; // Allow images to go to the far bottom
   
       return { x, y };
     };
