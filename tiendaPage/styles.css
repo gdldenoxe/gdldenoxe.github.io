@@ -19,7 +19,6 @@ body {
   transition: transform 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
   object-fit: contain; /* Ensures images maintain their aspect ratio */
-  border-radius: 5px;
 }
 
 /* Hover effect for images */
@@ -53,7 +52,6 @@ body {
   align-items: center;
   background: white;
   padding: 8px; /* Reduced padding inside modal */
-  border-radius: 8px; /* Slightly rounded corners */
   width: 80%; /* Smaller width for a more compact modal */
   max-width: 400px; /* Max width to keep it proportional */
   box-sizing: border-box;
@@ -95,7 +93,6 @@ body {
   width: 50px;
   height: 50px;
   object-fit: cover;
-  border-radius: 5px;
   cursor: pointer;
   transition: transform 0.3s ease;
   will-change: transform;
@@ -142,7 +139,6 @@ body {
   background-color: #008000; /* Green background */
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   text-align: center;
