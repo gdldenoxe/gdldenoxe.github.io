@@ -22,6 +22,12 @@ body {
   border-radius: 5px;
 }
 
+/* Hover effect for images */
+.image:hover {
+  transform: scale(1.05); /* Slightly enlarge the image */
+}
+
+
 /* Preview modal background (dark overlay) */
 .preview-modal {
   position: fixed;
