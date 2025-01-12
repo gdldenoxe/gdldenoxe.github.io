@@ -17,11 +17,11 @@ html, body {
 .image {
   position: absolute;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 0px; /* Remove the rounded corners for square shape */
   transition: transform 0.3s ease;
-  max-width: 100%; /* Ensures image stays within its container width */
-  max-height: 100%; /* Ensures image stays within its container height */
-  object-fit: contain; /* Keeps the image aspect ratio and does not distort */
+  width: 150px;  /* Set fixed square width */
+  height: 150px; /* Set fixed square height */
+  object-fit: cover; /* Cover the square container without distortion */
 }
 
 /* Hover effect on images */
