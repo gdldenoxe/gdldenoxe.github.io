@@ -49,8 +49,8 @@ body {
   background: white;
   padding: 8px; /* Reduced padding inside modal */
   border-radius: 8px; /* Slightly rounded corners */
-  width: 90%; /* Ensure it adapts to mobile and desktop */
-  max-width: 700px; /* Maximum width for the modal */
+  width: 80%; /* Smaller width for a more compact modal */
+  max-width: 400px; /* Max width to keep it proportional */
   box-sizing: border-box;
   overflow: hidden; /* Prevent content overflow */
 }
@@ -71,7 +71,7 @@ body {
 .preview-image {
   width: 100%;
   height: auto;
-  max-height: 80vh; /* Limit the height of the preview image to fit the screen */
+  max-height: 60vh; /* Limit the height of the preview image to fit the screen */
   margin-bottom: 4px; /* Reduced space between image and carousel */
   object-fit: contain; /* Ensures images retain their aspect ratio */
 }
@@ -102,7 +102,7 @@ body {
 
 /* Product title styling */
 .product-title {
-  font-size: 1.2em; /* Slightly smaller font size */
+  font-size: 1.1em; /* Slightly smaller font size */
   font-weight: bold;
   text-align: center;
   margin: 8px 0; /* Reduced margin */
@@ -112,7 +112,7 @@ body {
 
 /* Description text styling */
 .description-text {
-  font-size: 11px; /* Reduced font size */
+  font-size: 10px; /* Smaller font size */
   margin: 2px 0; /* Reduced margin */
   text-align: center;
   color: #666;
@@ -121,7 +121,7 @@ body {
 
 /* Price text styling */
 .price-text {
-  font-size: 14px; /* Slightly smaller font size */
+  font-size: 13px; /* Smaller font size */
   font-weight: bold;
   margin: 2px 0; /* Reduced margin */
   text-align: center;
@@ -185,5 +185,11 @@ body {
   .image {
     width: 180px;
     height: 180px;
+  }
+
+  /* Make modal even smaller on desktop */
+  .modal-content {
+    width: 40%; /* Further reduce width for smaller modal on desktop */
+    max-width: 300  px; /* Max width set to 350px for a smaller modal */
   }
 }
