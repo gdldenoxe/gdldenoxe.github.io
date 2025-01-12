@@ -136,19 +136,19 @@ document.addEventListener("DOMContentLoaded", () => {
       payButton.classList.add("pay-button");
       payButton.textContent = "Buy Now";
 
-      // Modal close button
+      // Modal close button (X)
       const closeButton = document.createElement("button");
-      closeButton.textContent = "Close Preview";
+      closeButton.textContent = "X";
       closeButton.classList.add("close-preview");
       closeButton.addEventListener("click", () => {
           previewModal.remove();
       });
 
+      modalContent.appendChild(closeButton); // Close button goes on top right
       modalContent.appendChild(previewImage);
       modalContent.appendChild(carouselContainer);
       modalContent.appendChild(descriptionText);
       modalContent.appendChild(payButton);
-      modalContent.appendChild(closeButton);
 
       previewModal.appendChild(modalContent);
       document.body.appendChild(previewModal);

@@ -35,16 +35,9 @@
   box-sizing: border-box;
 }
 
-/* Style for the preview image inside the modal */
-.preview-image {
-  max-width: 80%;
-  max-height: 80%;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-/* Modal content */
+/* Make the preview modal smaller (40% smaller than previous size) */
 .modal-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,6 +45,17 @@
   background: white;
   padding: 20px;
   border-radius: 10px;
+  width: 60%; /* 40% smaller than previous size */
+  max-width: 800px;
+}
+
+/* Preview image inside the modal */
+.preview-image {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 100%; /* Allow the image to fit within the modal content */
 }
 
 /* Carousel container */
@@ -73,21 +77,23 @@
   transform: scale(1.1);
 }
 
-/* Close button style for the modal */
+/* Close (X) button style for the modal, placed in the top-right corner of the modal */
 .close-preview {
   position: absolute;
   top: 10px;
   right: 10px;
-  background-color: red;
-  color: white;
-  padding: 10px;
+  background-color: transparent;
+  color: black;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  font-size: 30px;
+  font-weight: bold;
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
 
 .close-preview:hover {
-  background-color: darkred;
+  opacity: 1;
 }
 
 /* Pay button style */
@@ -105,9 +111,10 @@
   background-color: darkgreen;
 }
 
-/* Description text style */
+/* Description text style (increased font size) */
 .description-text {
-  font-size: 16px;
+  font-size: 18px; /* Increased font size */
   color: #333;
   margin-top: 20px;
+  text-align: center;
 }
