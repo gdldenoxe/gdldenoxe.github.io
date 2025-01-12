@@ -1,9 +1,16 @@
+/* Ensures no scrollbars appear on the page */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* Disable scrolling for the entire page */
+}
+
 /* Container for random images */
 #image-container {
   position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
+  height: 100vh; /* Full height of the viewport */
+  width: 100%; /* Full width of the viewport */
+  overflow: hidden; /* Disable scrolling within the image container */
 }
 
 /* Style for the random images */
@@ -12,6 +19,9 @@
   cursor: pointer;
   border-radius: 10px;
   transition: transform 0.3s ease;
+  max-width: 100vw; /* Ensures images stay within viewport width */
+  max-height: 100vh; /* Ensures images stay within viewport height */
+  object-fit: contain; /* Keeps the image aspect ratio and does not distort */
 }
 
 /* Hover effect on images */
