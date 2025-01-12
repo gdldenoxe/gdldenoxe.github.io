@@ -47,18 +47,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
   
-    // Image size for desktop (slightly smaller than before)
-    const desktopImageSize = { width: 250, height: 240 };
+    // Image size for desktop (slightly smaller)
+    const desktopImageSize = { width: 180, height: 180 };
   
     // Image size for mobile (scaled down)
-    const mobileImageSize = { width: 90, height: 90 };
+    const mobileImageSize = { width: 70, height: 70 };
   
     // Function to generate random positions that allow overlap
     const getRandomPosition = () => {
         const screenWidth = window.innerWidth;
         const screenHeight = window.innerHeight;
   
-        // Allow random positions with tighter packing
+        // Allow random positions with tighter packing but still allow overlap
         const x = Math.random() * (screenWidth - 120); // Prevent images from overflowing on the right side
         const y = Math.random() * (screenHeight - 120); // Prevent images from overflowing on the bottom side
   
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
         previewImage.src = mainSrc;
         previewImage.classList.add("preview-image");
   
-        // Carousel images
+        // Carousel images for sub-images
         const carouselContainer = document.createElement("div");
         carouselContainer.classList.add("carousel-container");
   
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
             carouselImage.src = subImage;
             carouselImage.classList.add("carousel-image");
   
-            // Add click event to carousel image to change the preview image
+            // Add click event to switch the preview image when carousel image is clicked
             carouselImage.addEventListener("click", () => {
                 previewImage.src = subImage;
             });
@@ -158,17 +158,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Load random images when page is loaded
     const loadRandomImages = () => {
         const isMobile = window.innerWidth <= 768; // Check if it's mobile screen
-        const imageCount = 15; // Number of images to generate
+        const imageCount = 15; // Number of clones of each image to generate
   
-        for (let i = 0; i < imageCount; i++) {
-            // Choose a random image from the product images
-            const randomProduct = productImages[Math.floor(Math.random() * productImages.length)];
-            const imageSrc = randomProduct.main;
-  
-            // Create and append the image element
-            const img = createImageElement(imageSrc, isMobile);
-            imageContainer.appendChild(img);
-        }
+        // For each product image, create 15 clones
+        productImages.forEach(product => {
+            for (let i = 0; i < imageCount; i++) {
+                // Create and append the image element
+                const img = createImageElement(product.main, isMobile);
+                imageContainer.appendChild(img);
+            }
+        });
     };
   
     // Load the random images when the page loads
