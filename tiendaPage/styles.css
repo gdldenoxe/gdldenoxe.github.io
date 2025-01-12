@@ -35,7 +35,7 @@
   box-sizing: border-box;
 }
 
-/* Make the preview modal smaller (40% smaller than previous size) */
+/* Make the preview modal 75% smaller than the previous size (25% of the original size) */
 .modal-content {
   position: relative;
   display: flex;
@@ -43,10 +43,10 @@
   justify-content: center;
   align-items: center;
   background: white;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
-  width: 60%; /* 40% smaller than previous size */
-  max-width: 800px;
+  width: 25%; /* 25% of the original size */
+  max-width: 400px; /* Limit the max width to 400px */
 }
 
 /* Preview image inside the modal */
@@ -61,13 +61,13 @@
 /* Carousel container */
 .carousel-container {
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 8px;
+  margin-top: 10px;
 }
 
 .carousel-image {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   object-fit: cover;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -80,13 +80,13 @@
 /* Close (X) button style for the modal, placed in the top-right corner of the modal */
 .close-preview {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   background-color: transparent;
   color: black;
   border: none;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -100,8 +100,8 @@
 .pay-button {
   background-color: green;
   color: white;
-  padding: 15px;
-  font-size: 16px;
+  padding: 12px;
+  font-size: 14px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -113,8 +113,8 @@
 
 /* Description text style (increased font size) */
 .description-text {
-  font-size: 18px; /* Increased font size */
+  font-size: 16px; /* Reduced font size for better proportion */
   color: #333;
-  margin-top: 20px;
+  margin-top: 15px;
   text-align: center;
 }
