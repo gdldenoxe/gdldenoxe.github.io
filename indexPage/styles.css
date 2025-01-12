@@ -21,8 +21,9 @@ html, body {
 /* Screen Resolution Container */
 .screen-resolution {
     position: relative;
-    width: 901px; /* Base width for the rectangle */
-    height: 492px; /* Base height for the rectangle */
+    width: 80%; /* Make the rectangle slightly smaller */
+    max-width: 720px; /* Cap the size on large screens */
+    aspect-ratio: 901 / 492; /* Maintain aspect ratio */
     transform-origin: center center; /* Scaling starts from the center */
 }
 
@@ -41,7 +42,7 @@ html, body {
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 3.5vw; /* Responsive font size */
+    font-size: calc(1.5vw + 10px); /* Responsive font size */
     color: #000000;
     text-decoration: none;
     z-index: 10; /* Ensure links are above the image */
@@ -51,7 +52,7 @@ html, body {
 /* ARCHIVO Link */
 .archivo {
     top: -10%; /* 10% from the top of the container */
-    left: 10%; /* 10% from the left of the container */
+    left: 0%; /* 10% from the left of the container */
 }
 
 /* TIENDA Link */
@@ -64,7 +65,7 @@ html, body {
 /* LINKS Link */
 .soundcloud {
     top: -10%; /* 10% from the top of the container */
-    right: 10%; /* 10% from the right of the container */
+    right: 0%; /* 10% from the right of the container */
 }
 
 /* EMAIL Link */
@@ -72,7 +73,7 @@ html, body {
     bottom: -14%; /* 10% from the bottom of the container */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%);
-    font-size: 3vw; /* Smaller font size for the email */
+    font-size: calc(1.2vw + 8px); /* Slightly smaller font size for the email */
 }
 
 /* Hover effect for links */
@@ -94,4 +95,10 @@ html, body {
         height: 90vh; /* Scale to 90% of viewport height */
         width: calc(90vh * (901 / 492)); /* Maintain aspect ratio */
     }
+}
+
+/* Ensure links remain proportional when zooming out */
+html, body {
+    transform-origin: center center;
+    transform: scale(1); /* Prevent zoom affecting proportions */
 }
