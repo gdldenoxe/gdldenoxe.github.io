@@ -22,8 +22,6 @@ html, body {
   max-width: 100%; /* Ensures image stays within its container width */
   max-height: 100%; /* Ensures image stays within its container height */
   object-fit: contain; /* Keeps the image aspect ratio and does not distort */
-  left: 0; /* Aligns the image to the left */
-  top: 0; /* Aligns the image to the top */
 }
 
 /* Hover effect on images */
@@ -47,7 +45,7 @@ html, body {
   box-sizing: border-box;
 }
 
-/* Make the preview modal 75% smaller than the previous size (25% of the original size) */
+/* Modal content for previews */
 .modal-content {
   position: relative;
   display: flex;
