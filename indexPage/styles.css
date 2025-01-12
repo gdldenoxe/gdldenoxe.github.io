@@ -5,141 +5,93 @@
     box-sizing: border-box;
 }
 
-/* Disable scrolling and ensure the body occupies full viewport */
+/* Disable scrolling and ensure full viewport usage */
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden; /* No scrolling allowed */
-    width: 100vw; /* Full width of the viewport */
-    height: 100vh; /* Full height of the viewport */
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0;
-    cursor: url('indexImages/cursor_gdn.png') 16 16, auto;
+    overflow: hidden; /* Prevent scrolling */
 }
 
-/* Wrapper to hold image and links together */
+/* Screen Resolution Container */
 .screen-resolution {
     position: relative;
-    width: 901px; /* Base width */
-    height: 492px; /* Base height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Stack items vertically */
-    transform-origin: center center; /* Ensure scaling starts from the center */
+    width: 901px; /* Base width for the rectangle */
+    height: 492px; /* Base height for the rectangle */
+    transform-origin: center center; /* Scaling starts from the center */
 }
 
-/* Image Container */
-.image-container {
-    position: relative;
-    width: 100%; /* Use full container width */
-    height: 100%; /* Use full container height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Keep stacking links */
-}
-
-/* Image inside the container */
+/* Rectangle (Image) */
 .positioned-crowdImage {
     position: absolute;
-    width: 100%; /* Full width of container */
-    height: 100%; /* Full height of container */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100%; /* Fill the container */
+    height: 100%; /* Fill the container */
+    object-fit: cover; /* Ensure the image scales without distortion */
+    z-index: 1; /* Keep image behind the links */
 }
 
-/* Image inside the container */
-.positioned-crowdImage img {
-    width: 100%; /* Scale the image with its container */
-    height: 100%; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensure the image is fully visible without cropping */
-}
-
-/* General link styling */
+/* General Link Styling */
 .positioned-link {
     position: absolute;
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 3.5vw; /* Font size scales dynamically based on viewport */
-    line-height: 1.2; /* Adjust line height */
+    font-size: 3.5vw; /* Responsive font size */
     color: #000000;
     text-decoration: none;
-    z-index: 10;
-    width: 15vw; /* Width scales proportionally */
+    z-index: 10; /* Ensure links are above the image */
     text-align: center;
 }
 
-/* Position: ARCHIVO link */
+/* ARCHIVO Link */
 .archivo {
-    left: 0%; /* Keep proportional left margin */
-    top: -11%; /* Adjust top position relative to container */
+    top: -10%; /* 10% from the top of the container */
+    left: 10%; /* 10% from the left of the container */
 }
 
-/* Position: TIENDA link */
+/* TIENDA Link */
 .tienda {
+    top: -10%; /* 10% from the top of the container */
     left: 50%; /* Center horizontally */
-    top: -11%; /* Adjust top position */
-    transform: translateX(-50%); /* Ensure it's fully centered */
+    transform: translateX(-50%);
 }
 
-/* Position: SoundCloud link */
+/* LINKS Link */
 .soundcloud {
-    right: -2%; /* Keep proportional right margin */
-    top: -11%; /* Adjust top position */
+    top: -10%; /* 10% from the top of the container */
+    right: 10%; /* 10% from the right of the container */
 }
 
-/* Position: GDLDENOXE@GMAIL.COM */
+/* EMAIL Link */
 .email {
+    bottom: -14%; /* 10% from the bottom of the container */
     left: 50%; /* Center horizontally */
-    top: calc(96% + 3vw); /* Position it just below the image with dynamic space */
-    transform: translateX(-50%); /* Ensure it's fully centered horizontally */
-    width: auto; /* Adjust width automatically */
-    font-size: 3.5vw; /* Font size scales based on viewport width */
-    line-height: 4.2vw; /* Line height scales with font size */
-    color: #000000; /* Font color */
-    text-decoration: none;
+    transform: translateX(-50%);
+    font-size: 3vw; /* Smaller font size for the email */
 }
 
 /* Hover effect for links */
-.archivo:hover, .tienda:hover, .soundcloud:hover, .email:hover {
+.positioned-link:hover {
     color: #007BFF;
     text-decoration: underline;
 }
 
-/* Mobile scaling for the image and links */
-@media (max-width: 768px) {
-    /* Scale the entire screen resolution group by 50% */
+/* Responsive Scaling */
+@media (max-width: 901px) {
     .screen-resolution {
-        transform: scale(0.9); /* Scale the image and all content within by 50% */
-        transform-origin: center center; /* Ensure it scales from the center */
+        width: 90vw; /* Scale to 90% of viewport width */
+        height: calc(90vw * (492 / 901)); /* Maintain aspect ratio */
     }
+}
 
-    /* Ensure the screen resolution container stays centered */
-    .image-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column; /* Keep stacking links */
-    }
-
-    /* Adjust link sizes for mobile */
-    .positioned-link {
-        font-size: 6vw; /* Adjust font size for better readability on small screens */
-    }
-
-    /* Adjust positioning of the links */
-    .archivo, .tienda, .soundcloud {
-        top: calc(20% * 0.5); /* Scale the position based on image scale */
-    }
-
-    .email {
-        font-size: 6vw; /* Increase the font size for readability on mobile */
-        line-height: 7vw; /* Adjust line height for readability */
-        top: calc(82% + 6vw); /* Adjust the position based on image scaling */
+@media (max-height: 492px) {
+    .screen-resolution {
+        height: 90vh; /* Scale to 90% of viewport height */
+        width: calc(90vh * (901 / 492)); /* Maintain aspect ratio */
     }
 }
