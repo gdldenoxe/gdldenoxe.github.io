@@ -1,20 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
   const imageContainer = document.getElementById("image-container");
 
-  // Function to get product data from HTML elements
   const getProductData = () => {
     const products = [];
     const productElements = document.querySelectorAll('.product');
+    
     productElements.forEach(productElement => {
+      const title = productElement.getAttribute('data-title');  // Get the title
       const main = productElement.getAttribute('data-main');
       const sub = JSON.parse(productElement.getAttribute('data-sub')); // Parse JSON for sub images
       const description = productElement.getAttribute('data-description');
-      const price = productElement.getAttribute('data-price');  // New price attribute
-      
-      products.push({ main, sub, description, price });
+      const price = productElement.getAttribute('data-price');
+      const buyUrl = productElement.getAttribute('data-buy-url');  // Get the buy URL
+  
+      products.push({ title, main, sub, description, price, buyUrl });
     });
+  
     return products;
   };
+  
 
   // Image size for desktop (slightly smaller)
   const desktopImageSize = { width: 180, height: 180 };
@@ -62,78 +66,82 @@ document.addEventListener("DOMContentLoaded", () => {
     return img;
   };
 
-  // Function to show the preview of the clicked image
   const showPreview = (mainSrc) => {
     const product = getProductData().find(product => product.main === mainSrc);
-
-    // Create a modal or preview for the clicked image
+  
+    if (!product) {
+      console.error('Product not found for:', mainSrc);
+      return;
+    }
+  
     const previewModal = document.createElement("div");
     previewModal.classList.add("preview-modal");
-
-    // Modal content
+  
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
-
-    // Preview image
+  
+    // Product title
+    const productTitle = document.createElement("h2");
+    productTitle.classList.add("product-title");
+    productTitle.textContent = product.title;  // Display product title
+  
     const previewImage = document.createElement("img");
     previewImage.src = mainSrc;
     previewImage.classList.add("preview-image");
-
-    // Carousel images for sub-images
+  
     const carouselContainer = document.createElement("div");
     carouselContainer.classList.add("carousel-container");
-
-    // Create carousel images and set event listeners for switching the preview image
+  
     product.sub.forEach(subImage => {
       const carouselImage = document.createElement("img");
       carouselImage.src = subImage;
       carouselImage.classList.add("carousel-image");
-
-      // Add click event to switch the preview image when carousel image is clicked
+  
       carouselImage.addEventListener("click", () => {
         previewImage.src = subImage;
       });
-
+  
       carouselContainer.appendChild(carouselImage);
     });
-
-    // Description text
+  
     const descriptionText = document.createElement("p");
     descriptionText.classList.add("description-text");
     descriptionText.textContent = product.description;
-
-    // Price text
+  
     const priceText = document.createElement("p");
     priceText.classList.add("price-text");
     priceText.textContent = `${product.price}`;
-
-    // Pay button
+  
     const payButton = document.createElement("button");
     payButton.classList.add("pay-button");
     payButton.textContent = "Buy Now";
     payButton.addEventListener("click", () => {
-      window.location.href = product.buyUrl; // Directs to the product buy URL
+      if (product.buyUrl) {
+        window.location.href = product.buyUrl;
+      } else {
+        alert("Buy URL is missing for this product.");
+      }
     });
-
-    // Modal close button (X)
+  
     const closeButton = document.createElement("button");
     closeButton.textContent = "X";
     closeButton.classList.add("close-preview");
     closeButton.addEventListener("click", () => {
       previewModal.remove();
     });
-
-    modalContent.appendChild(closeButton); // Close button goes on top right
+  
+    modalContent.appendChild(closeButton);
+    modalContent.appendChild(productTitle); // Append the title
     modalContent.appendChild(previewImage);
     modalContent.appendChild(carouselContainer);
     modalContent.appendChild(descriptionText);
     modalContent.appendChild(priceText);
     modalContent.appendChild(payButton);
-
+  
     previewModal.appendChild(modalContent);
     document.body.appendChild(previewModal);
   };
-
+  
   // Load random images when page is loaded
   const loadRandomImages = () => {
     const isMobile = window.innerWidth <= 768; // Check if it's mobile screen
