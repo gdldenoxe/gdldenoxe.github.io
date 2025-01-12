@@ -3,12 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TIENDA X GDN</title>
+  <title>Product Preview</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="image-container"></div>
- 
+
+  <!-- Product Inventory -->
+  <div class="inventory">
+
+    <!-- Blue Shirt -->
+    <div class="product">
+      <img src="tiendaImages/blueGDNShirtMain (1).jpg" alt="Blue Shirt" class="product-image" data-main="tiendaImages/blueGDNShirtMain (1).jpg" data-subs='["tiendaImages/blueGDNShirtSub(1).jpg"]'>
+    </div>
+
+    <!-- Gray Shirt -->
+    <div class="product">
+      <img src="tiendaImages/grayGDNShirtMain (1).jpg" alt="Gray Shirt" class="product-image" data-main="tiendaImages/grayGDNShirtMain (1).jpg" data-subs='["tiendaImages/grayGDNShirtSub (1).jpg"]'>
+    </div>
+
+    <!-- Orange Jacket -->
+    <div class="product">
+      <img src="tiendaImages/orangeGDNJacketMain (1).jpg" alt="Orange Jacket" class="product-image" data-main="tiendaImages/orangeGDNJacketMain (1).jpg" data-subs='["tiendaImages/orangeGDNJacketSub (1).jpg", "tiendaImages/orangeGDNJacketSub (2).jpg"]'>
+    </div>
+
+    <!-- Pin Jacket -->
+    <div class="product">
+      <img src="tiendaImages/pinGDNJacketMain (1).jpg" alt="Pin Jacket" class="product-image" data-main="tiendaImages/pinGDNJacketMain (1).jpg" data-subs='["tiendaImages/pinGDNJacketSub (1).jpg", "tiendaImages/pinGDNJacketSub (2).jpg"]'>
+    </div>
+
+    <!-- Red Jacket -->
+    <div class="product">
+      <img src="tiendaImages/redGDNJacketMain (1).jpg" alt="Red Jacket" class="product-image" data-main="tiendaImages/redGDNJacketMain (1).jpg" data-subs='["tiendaImages/redGDNJacketSub (1).jpg", "tiendaImages/redGDNJacketSub (2).jpg"]'>
+    </div>
+
+  </div>
+
+  <!-- Modal for Product Preview -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeBtn">&times;</span>
+
+      <!-- Carousel -->
+      <div class="carousel">
+        <button class="prev" id="prevBtn">&#10094;</button>
+        <img id="carouselImage" src="" alt="Product Image">
+        <button class="next" id="nextBtn">&#10095;</button>
+      </div>
+
+      <!-- Product Description -->
+      <div class="product-description">
+        <h2 id="productTitle">Product Title</h2>
+        <p id="productDescription">Product description goes here.</p>
+      </div>
+
+      <!-- Pay Button -->
+      <button class="pay-button">Pay Now</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>

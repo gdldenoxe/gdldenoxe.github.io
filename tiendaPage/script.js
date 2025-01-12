@@ -1,75 +1,62 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const imageContainer = document.getElementById("image-container");
-  
-    // List of image sources
-    const imageSources = [
-      "tiendaImages/imageTienda (1).jpg",
-      "tiendaImages/imageTienda (2).jpg",
-      "tiendaImages/imageTienda (3).jpg",
-      "tiendaImages/imageTienda (4).jpg",
-      "tiendaImages/imageTienda (5).jpg",
-      "tiendaImages/imageTienda (6).jpg",
-      "tiendaImages/imageTienda (7).jpg",
-      "tiendaImages/imageTienda (8).jpg",
-      "tiendaImages/imageTienda (9).jpg",
-      "tiendaImages/imageTienda (10).jpg",
-      "tiendaImages/imageTienda (11).jpg",
-      "tiendaImages/imageTienda (12).jpg",
-      "tiendaImages/imageTienda (13).jpg",
-      "tiendaImages/imageTienda (14).jpg",
-      "tiendaImages/imageTienda (15).jpg",
-      "tiendaImages/imageTienda (16).jpg",
-    ];
-  
-    // Image size for desktop (keep resolution for desktop)
-    const desktopImageSize = { width: 312, height: 299 };
-  
-    // Image size for mobile (scaled down)
-    const mobileImageSize = { width: 100, height: 100 };
-  
-    // Function to generate random positions that allow overlap
-    const getRandomPosition = () => {
-      const screenWidth = window.innerWidth;
-      const screenHeight = window.innerHeight;
-  
-      const x = Math.random() * screenWidth; // Allow positions to be anywhere on screen width
-      const y = Math.random() * screenHeight; // Allow positions to be anywhere on screen height
-  
-      return { x, y };
-    };
-  
-    // Function to create an image element
-    const createImageElement = (src, isMobile) => {
-      const img = document.createElement("img");
-      img.src = src;
-      img.classList.add("image");
-  
-      // Set appropriate size based on screen size (mobile or desktop)
-      const { width, height } = isMobile ? mobileImageSize : desktopImageSize;
-      img.style.width = `${width}px`;
-      img.style.height = `${height}px`;
-  
-      // Assign random position
-      const { x, y } = getRandomPosition();
-      img.style.left = `${x}px`;
-      img.style.top = `${y}px`;
-  
-      // Assign a random z-index to layer images on top of each other
-      const randomZIndex = Math.floor(Math.random() * 1000); // Random z-index value
-      img.style.zIndex = randomZIndex;
-  
-      return img;
-    };
-  
-    // Determine if we are on mobile or desktop
-    const isMobile = window.innerWidth <= 768;
-  
-    // Generate 5 copies of each image
-    imageSources.forEach((src) => {
-      for (let i = 0; i < 2; i++) {
-        const img = createImageElement(src, isMobile);
-        imageContainer.appendChild(img);
-      }
-    });
+// Modal functionality
+const modal = document.getElementById('productModal');
+const closeBtn = document.getElementById('closeBtn');
+const carouselImage = document.getElementById('carouselImage');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const productTitle = document.getElementById('productTitle');
+const productDescription = document.getElementById('productDescription');
+
+// Variables for carousel
+let currentIndex = 0;
+let mainImage = "";
+let subImages = [];
+
+// Event listener for opening the modal
+const productImages = document.querySelectorAll('.product-image');
+
+productImages.forEach(image => {
+  image.addEventListener('click', () => {
+    // Get product data from the clicked image
+    mainImage = image.dataset.main;
+    subImages = JSON.parse(image.dataset.subs);
+    
+    // Set initial image in the carousel
+    carouselImage.src = mainImage;
+    
+    // Set product title and description
+    productTitle.textContent = image.alt;
+    productDescription.textContent = `This is a stylish ${image.alt} made for comfort and style. It's perfect for any occasion and a great addition to your wardrobe.`;
+    
+    // Open the modal
+    modal.style.display = "flex";
   });
-  
+});
+
+// Close modal functionality
+closeBtn.addEventListener('click', () => {
+  modal.style.display = "none";
+});
+
+// Close modal if clicked outside of the modal
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+// Carousel functionality
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + [mainImage, ...subImages].length) % [mainImage, ...subImages].length;
+  carouselImage.src = [mainImage, ...subImages][currentIndex];
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % [mainImage, ...subImages].length;
+  carouselImage.src = [mainImage, ...subImages][currentIndex];
+});
+
+// Pay button functionality (this can link to a payment page or integration)
+document.querySelector('.pay-button').addEventListener('click', () => {
+  alert("Proceeding to payment...");
+});
