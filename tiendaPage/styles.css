@@ -18,10 +18,8 @@ body {
   position: absolute;
   transition: transform 0.3s ease, opacity 0.3s ease;
   cursor: pointer;
-  object-fit: cover; /* Ensures images fill the square without stretching */
-  width: 180px; /* Set fixed width */
-  height: 180px; /* Set fixed height to make them square */
-  /* No border-radius to keep the images square */
+  object-fit: contain; /* Ensures images maintain their aspect ratio */
+  border-radius: 5px;
 }
 
 /* Hover effect for images */
@@ -89,7 +87,7 @@ body {
   justify-content: center;
   gap: 5px; /* Reduce space between carousel images */
   margin-bottom: 8px;
-  overflow-x: auto; /* Allow horizontal scrolling */
+  overflow: visible; /* Disable horizontal scrolling */
 }
 
 /* Carousel image styles */
@@ -100,11 +98,12 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 /* Hover effect for carousel images */
 .carousel-image:hover {
-  transform: scale(1.1);
+  transform: scale(1.1); /* Slightly enlarge carousel images on hover */
 }
 
 /* Product title styling */
@@ -182,16 +181,16 @@ body {
 /* Style for the images when viewed on mobile */
 @media (max-width: 768px) {
   .image {
-    width: 70px; /* Adjust size for mobile */
-    height: 70px; /* Ensure it's square on mobile */
+    width: 70px;
+    height: 70px;
   }
 }
 
 /* Style for larger screens (desktop) */
 @media (min-width: 769px) {
   .image {
-    width: 180px; /* Adjust size for desktop */
-    height: 180px; /* Ensure it's square on desktop */
+    width: 180px;
+    height: 180px;
   }
 
   /* Make modal even smaller on desktop */
