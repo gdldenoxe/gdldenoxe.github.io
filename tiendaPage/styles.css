@@ -130,3 +130,40 @@ html, body {
   margin-top: 15px;
   text-align: center;
 }
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  /* Scale down the modal content for smaller screens */
+  .modal-content {
+    width: 80%; /* Increase the width on mobile to take up more space */
+    max-width: 90%; /* Allow for some flexibility */
+  }
+
+  /* Adjust the size of the preview image */
+  .preview-image {
+    max-width: 90%; /* Allow the image to take up more space within the modal */
+    max-height: 70vh; /* Limit the height for better responsiveness */
+  }
+
+  /* Adjust the carousel size on mobile */
+  .carousel-image {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* Reduce the size of the close button */
+  .close-preview {
+    font-size: 20px;
+  }
+
+  /* Adjust the pay button for mobile */
+  .pay-button {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  /* Make the description text a bit smaller on mobile */
+  .description-text {
+    font-size: 14px;
+  }
+}

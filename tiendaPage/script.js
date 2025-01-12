@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Generate 5 copies of each main image in random positions
   productImages.forEach((product) => {
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 20; i++) {
           const img = createImageElement(product.main, isMobile);
           imageContainer.appendChild(img);
       }
