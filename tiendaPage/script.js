@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Pay button
       const payButton = document.createElement("button");
       payButton.classList.add("pay-button");
-      payButton.textContent = "Buy Now";
+      payButton.textContent = "$$$";
   
       // Modal close button (X)
       const closeButton = document.createElement("button");
