@@ -190,6 +190,6 @@ body {
   /* Make modal even smaller on desktop */
   .modal-content {
     width: 40%; /* Further reduce width for smaller modal on desktop */
-    max-width: 300  px; /* Max width set to 350px for a smaller modal */
+    max-width: 300px; /* Max width set to 350px for a smaller modal */
   }
 }
