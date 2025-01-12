@@ -59,6 +59,15 @@ html, body {
   max-width: 400px; /* Limit the max width to 400px */
 }
 
+/* Title for the product (positioned below the preview images and above the description) */
+.product-title {
+  font-size: 1.8em; /* Larger font for the title */
+  font-weight: bold;
+  text-align: center; /* Center the title */
+  margin-top: 15px; /* Add space from the preview image */
+  color: #333; /* Darker color for better contrast */
+}
+
 /* Preview image inside the modal */
 .preview-image {
   max-width: 80%;
@@ -184,5 +193,4 @@ html, body {
     font-weight: bold;
     margin-bottom: 10px;
   }
-  
 }

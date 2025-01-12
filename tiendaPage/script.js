@@ -68,79 +68,80 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const showPreview = (mainSrc) => {
     const product = getProductData().find(product => product.main === mainSrc);
-  
-    if (!product) {
-      console.error('Product not found for:', mainSrc);
-      return;
-    }
-  
+
+    // Create a modal or preview for the clicked image
     const previewModal = document.createElement("div");
     previewModal.classList.add("preview-modal");
-  
+
+    // Modal content
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
-  
-    // Product title
-    const productTitle = document.createElement("h2");
-    productTitle.classList.add("product-title");
-    productTitle.textContent = product.title;  // Display product title
-  
+
+    // Preview image
     const previewImage = document.createElement("img");
     previewImage.src = mainSrc;
     previewImage.classList.add("preview-image");
-  
+
+    // Carousel images for sub-images
     const carouselContainer = document.createElement("div");
     carouselContainer.classList.add("carousel-container");
-  
+
+    // Create carousel images and set event listeners for switching the preview image
     product.sub.forEach(subImage => {
       const carouselImage = document.createElement("img");
       carouselImage.src = subImage;
       carouselImage.classList.add("carousel-image");
-  
+
+      // Add click event to switch the preview image when carousel image is clicked
       carouselImage.addEventListener("click", () => {
         previewImage.src = subImage;
       });
-  
+
       carouselContainer.appendChild(carouselImage);
     });
-  
+
+    // Product title (below the preview images and above the description)
+    const titleText = document.createElement("p");
+    titleText.classList.add("product-title");
+    titleText.textContent = "Product Title"; // Change it to actual title
+
+    // Description text
     const descriptionText = document.createElement("p");
     descriptionText.classList.add("description-text");
     descriptionText.textContent = product.description;
-  
+
+    // Price text
     const priceText = document.createElement("p");
     priceText.classList.add("price-text");
     priceText.textContent = `${product.price}`;
-  
+
+    // Pay button
     const payButton = document.createElement("button");
     payButton.classList.add("pay-button");
     payButton.textContent = "Buy Now";
     payButton.addEventListener("click", () => {
-      if (product.buyUrl) {
-        window.location.href = product.buyUrl;
-      } else {
-        alert("Buy URL is missing for this product.");
-      }
+      window.location.href = product.buyUrl; // Directs to the product buy URL
     });
-  
+
+    // Modal close button (X)
     const closeButton = document.createElement("button");
     closeButton.textContent = "X";
     closeButton.classList.add("close-preview");
     closeButton.addEventListener("click", () => {
       previewModal.remove();
     });
-  
-    modalContent.appendChild(closeButton);
-    modalContent.appendChild(productTitle); // Append the title
+
+    modalContent.appendChild(closeButton); // Close button goes on top right
     modalContent.appendChild(previewImage);
     modalContent.appendChild(carouselContainer);
+    modalContent.appendChild(titleText); // Append the title here
     modalContent.appendChild(descriptionText);
     modalContent.appendChild(priceText);
     modalContent.appendChild(payButton);
-  
     previewModal.appendChild(modalContent);
     document.body.appendChild(previewModal);
-  };
+};
+
   
   // Load random images when page is loaded
   const loadRandomImages = () => {
