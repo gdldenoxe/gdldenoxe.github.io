@@ -86,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const carouselContainer = document.createElement("div");
     carouselContainer.classList.add("carousel-container");
 
-    // Create carousel images and set event listeners for switching the preview image
     product.sub.forEach(subImage => {
       const carouselImage = document.createElement("img");
       carouselImage.src = subImage;
@@ -103,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Product title (below the preview images and above the description)
     const titleText = document.createElement("p");
     titleText.classList.add("product-title");
-    titleText.textContent = "Product Title"; // Change it to actual title
+    titleText.textContent = product.title;
 
     // Description text
     const descriptionText = document.createElement("p");
@@ -131,6 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       previewModal.remove();
     });
 
+    // Append all modal content with reduced spacing
     modalContent.appendChild(closeButton); // Close button goes on top right
     modalContent.appendChild(previewImage);
     modalContent.appendChild(carouselContainer);
