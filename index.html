@@ -15,9 +15,26 @@
     <!-- Screen Resolution Wrapper -->
     <div class="screen-resolution">
         <!-- Image (Rectangle) -->
-        <img src="indexPage/indexImages/guadalajaraDeNocheCrowd.jpeg" 
-             alt="Crowd Image" 
-             class="positioned-crowdImage" />
+        <img id="randomImage" 
+        alt="Crowd Image" 
+        class="positioned-crowdImage" />
+
+        <script>
+            // Array of image paths
+            const imagePaths = [
+                "indexPage/indexImages/2 Intro.jpeg",
+                "indexPage/indexImages/3 Intro.jpeg",
+                "indexPage/indexImages/4 Intro.jpeg",
+                "indexPage/indexImages/6 Intro.jpeg",
+                "indexPage/indexImages/7 Intro.jpg"
+            ];
+    
+            // Select a random image
+            const randomImage = imagePaths[Math.floor(Math.random() * imagePaths.length)];
+    
+            // Set the random image as the src
+            document.getElementById('randomImage').src = randomImage;
+        </script>
 
         <!-- Positioned Links -->
         <a href="tiendaPage/tiendaPage.html" class="positioned-link tienda">TIENDA</a>

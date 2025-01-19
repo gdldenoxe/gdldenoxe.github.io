@@ -115,7 +115,7 @@ body {
 
 /* Description text styling */
 .description-text {
-  font-size: 10px; /* Smaller font size */
+  font-size: 13px; /* Smaller font size */
   margin: 2px 0; /* Reduced margin */
   text-align: center;
   color: #666;
@@ -124,7 +124,7 @@ body {
 
 /* Price text styling */
 .price-text {
-  font-size: 13px; /* Smaller font size */
+  font-size: 16px; /* Smaller font size */
   font-weight: bold;
   margin: 2px 0; /* Reduced margin */
   text-align: center;
