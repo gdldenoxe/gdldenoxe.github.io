@@ -6,6 +6,12 @@ const repo = 'gdldenoxe.github.io'; // Repository name
 const folder = 'archivoPage/archiveImages'; // Folder path in the repository
 const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}`;
 
+
+document.write("<div id='sidebartop'>");
+document.write("<p>guadalajaradenoxe.com</p>");
+document.write("</div>");
+
+
 // Function to fetch the total number of images
 async function getTotalImages() {
   try {
