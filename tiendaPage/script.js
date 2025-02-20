@@ -6,83 +6,70 @@ document.addEventListener("DOMContentLoaded", () => {
     const productElements = document.querySelectorAll('.product');
     
     productElements.forEach(productElement => {
-      const title = productElement.getAttribute('data-title');  // Get the title
+      const title = productElement.getAttribute('data-title');
       const main = productElement.getAttribute('data-main');
-      const sub = JSON.parse(productElement.getAttribute('data-sub')); // Parse JSON for sub images
+      const sub = JSON.parse(productElement.getAttribute('data-sub'));
       const description = productElement.getAttribute('data-description');
       const price = productElement.getAttribute('data-price');
-      const buyUrl = productElement.getAttribute('data-buy-url');  // Get the buy URL
+      const buyUrl = productElement.getAttribute('data-buy-url');
+      const stock = productElement.getAttribute('data-stock') || "in"; // Default to "in" if not specified
   
-      products.push({ title, main, sub, description, price, buyUrl });
+      products.push({ title, main, sub, description, price, buyUrl, stock });
     });
   
     return products;
   };
-  
 
-  // Image size for desktop (slightly smaller)
   const desktopImageSize = { width: 180, height: 180 };
-
-  // Image size for mobile (scaled down)
   const mobileImageSize = { width: 70, height: 70 };
 
-  // Function to generate random positions that allow overlap and reach full screen perimeter
   const getRandomPosition = () => {
     const screenWidth = window.innerWidth;
     const screenHeight = window.innerHeight;
-
-    // Allow random positions but ensure images can go from edge to edge (covering the whole perimeter)
-    const x = Math.random() * screenWidth; // Allow images to go to the far right
-    const y = Math.random() * screenHeight; // Allow images to go to the far bottom
-
+    const x = Math.random() * screenWidth;
+    const y = Math.random() * screenHeight;
     return { x, y };
   };
 
-  // Function to create an image element
-  const createImageElement = (src, isMobile) => {
+  const createImageElement = (product, isMobile) => {
     const img = document.createElement("img");
-    img.src = src;
+    img.src = product.main;
     img.classList.add("image");
 
-    // Set appropriate size based on screen size (mobile or desktop)
     const { width, height } = isMobile ? mobileImageSize : desktopImageSize;
     img.style.width = `${width}px`;
     img.style.height = `${height}px`;
-
-    // Assign random position
+    
     const { x, y } = getRandomPosition();
     img.style.left = `${x}px`;
     img.style.top = `${y}px`;
 
-    // Assign a random z-index to layer images on top of each other
-    const randomZIndex = Math.floor(Math.random() * 1000); // Random z-index value
+    const randomZIndex = Math.floor(Math.random() * 1000);
     img.style.zIndex = randomZIndex;
 
-    // Make the image clickable to show preview
+    if (product.stock === "out") {
+      img.style.opacity = "1";
+      img.style.cursor = "allowed";
+    }
+
     img.addEventListener("click", () => {
-      showPreview(src);
+      showPreview(product);
     });
 
     return img;
   };
 
-  const showPreview = (mainSrc) => {
-    const product = getProductData().find(product => product.main === mainSrc);
-
-    // Create a modal or preview for the clicked image
+  const showPreview = (product) => {
     const previewModal = document.createElement("div");
     previewModal.classList.add("preview-modal");
 
-    // Modal content
     const modalContent = document.createElement("div");
     modalContent.classList.add("modal-content");
 
-    // Preview image
     const previewImage = document.createElement("img");
-    previewImage.src = mainSrc;
+    previewImage.src = product.main;
     previewImage.classList.add("preview-image");
 
-    // Carousel images for sub-images
     const carouselContainer = document.createElement("div");
     carouselContainer.classList.add("carousel-container");
 
@@ -90,39 +77,43 @@ document.addEventListener("DOMContentLoaded", () => {
       const carouselImage = document.createElement("img");
       carouselImage.src = subImage;
       carouselImage.classList.add("carousel-image");
-
-      // Add click event to switch the preview image when carousel image is clicked
       carouselImage.addEventListener("click", () => {
         previewImage.src = subImage;
       });
-
       carouselContainer.appendChild(carouselImage);
     });
 
-    // Product title (below the preview images and above the description)
     const titleText = document.createElement("p");
     titleText.classList.add("product-title");
     titleText.textContent = product.title;
 
-    // Description text
     const descriptionText = document.createElement("p");
     descriptionText.classList.add("description-text");
     descriptionText.textContent = product.description;
 
-    // Price text
     const priceText = document.createElement("p");
     priceText.classList.add("price-text");
-    priceText.textContent = `${product.price}`;
+    if (product.stock === "out") {
+      priceText.textContent = `${product.price}`;
+      priceText.style.color = "red";
+    } else {
+      priceText.textContent = `${product.price}`;
+    }
 
-    // Pay button
     const payButton = document.createElement("button");
     payButton.classList.add("pay-button");
     payButton.textContent = "Buy Now";
-    payButton.addEventListener("click", () => {
-      window.location.href = product.buyUrl; // Directs to the product buy URL
-    });
+    if (product.stock === "out") {
+      payButton.style.backgroundColor = "red";
+      payButton.textContent = "Out Of Stock";
+      payButton.disabled = true;
+      payButton.style.cursor = "not-allowed";
+    } else {
+      payButton.addEventListener("click", () => {
+        window.location.href = product.buyUrl;
+      });
+    }
 
-    // Modal close button (X)
     const closeButton = document.createElement("button");
     closeButton.textContent = "X";
     closeButton.classList.add("close-preview");
@@ -130,37 +121,30 @@ document.addEventListener("DOMContentLoaded", () => {
       previewModal.remove();
     });
 
-    // Append all modal content with reduced spacing
-    modalContent.appendChild(closeButton); // Close button goes on top right
+    modalContent.appendChild(closeButton);
     modalContent.appendChild(previewImage);
     modalContent.appendChild(carouselContainer);
-    modalContent.appendChild(titleText); // Append the title here
+    modalContent.appendChild(titleText);
     modalContent.appendChild(descriptionText);
     modalContent.appendChild(priceText);
     modalContent.appendChild(payButton);
     previewModal.appendChild(modalContent);
     document.body.appendChild(previewModal);
-};
+  };
 
-  
-  // Load random images when page is loaded
   const loadRandomImages = () => {
-    const isMobile = window.innerWidth <= 768; // Check if it's mobile screen
-    const imageCount = 20; // Number of clones of each image to generate
+    const isMobile = window.innerWidth <= 768;
+    const imageCount = 20;
 
-    // Get the product data from the HTML elements
     const products = getProductData();
 
-    // For each product image, create 15 clones
     products.forEach(product => {
       for (let i = 0; i < imageCount; i++) {
-        // Create and append the image element
-        const img = createImageElement(product.main, isMobile);
+        const img = createImageElement(product, isMobile);
         imageContainer.appendChild(img);
       }
     });
   };
 
-  // Load the random images when the page loads
   loadRandomImages();
 });
