@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const loadRandomImages = () => {
     const isMobile = window.innerWidth <= 768;
-    const imageCount = 20;
+    const imageCount = 45;
 
     const products = getProductData();
 
